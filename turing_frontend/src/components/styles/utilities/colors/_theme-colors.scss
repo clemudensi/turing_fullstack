@@ -1,0 +1,30 @@
+/**
+* Jetstream Theme Colors
+* Version: 0.1.0
+* Use color names from 
+* https://coolors.co/0b263e-3487b7-5d7080-d9dfe2-5cb960
+* http://chir.ag/projects/name-that-color/
+*/
+
+/* 
+* Note: Modified the following semantic UI colors and their lighter verson
+* in the src/vendor/semantic/src/themes/default/globals/site.variables
+    -------------
+    @violet : #0B263E; | @lightViolet
+    @blue: #3487B7;
+    @green: #5CB960;
+    @grey: #5D7080;
+    @red : #FF3D00;
+    ----------------
+* and ran "gulp build-css" in src/vendor/semantic/
+*/
+
+$zodiac-blue : #0B263E;
+$steel-blue: #3487B7;
+$bud-green: #5CB960;
+$paynes-grey: #5D7080;
+$vermilion-red: #C92228;
+$gainsboro-grey: #D9DFE2;
+$antiflash-white: #ECEFF1;
+$white: #ffffff;
+$black: #000000;

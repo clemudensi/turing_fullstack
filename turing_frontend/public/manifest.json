@@ -1,0 +1,17 @@
+{
+  "short_name": "Turin Shop",
+  "name": "Turing E-commerce T-shirt shop",
+  "description": "Turing E-commerce T-shirt shop is a collection of unique design T-shirt prints",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "tshirtshop.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

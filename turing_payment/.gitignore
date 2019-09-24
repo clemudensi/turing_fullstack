@@ -1,0 +1,37 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+/old-files/.serverless
+
+# production
+
+# jetbrain
+/.idea
+
+# misc
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# test
+/test
+
+# misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/.webpack
+
+yarn.lock
+
+#config data
+config.json
+.env
+../old-files/turing.sql
+
+package-lock.json
+/old-files/old-config.json

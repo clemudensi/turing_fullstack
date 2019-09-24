@@ -1,0 +1,43 @@
+# package directories
+node_modules
+jspm_packages
+
+
+# production
+
+# jetbrain
+/.idea
+
+# misc
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# test
+/test
+
+# misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/.webpack
+
+yarn.lock
+
+#config data
+config.json
+.env
+
+#node modules
+/turing_backend/node_modules
+/turing_frontend/node_modules
+/turing_payment/node_modules
+/turing_auth/node_modules
+
+#jetbrain
+/turing_backend/.idea
+/turing_frontend/.idea
+/turing_payment/.idea
+/turing_auth/.idea

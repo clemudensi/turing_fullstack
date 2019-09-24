@@ -1,0 +1,50 @@
+@import "../styles/utilities/colors/theme-colors";
+
+%topbar-children {
+  color: $paynes-grey;
+  font-weight: 300;
+  padding: 1em;
+  padding-bottom: 2em;
+  min-height: calc(100vh - 100px);
+  z-index: 1;
+}
+
+.topbar-children__mobile {
+  @extend %topbar-children;
+  margin-top: 3.2em;
+  padding: 0.5em;
+  padding-top: 1em;
+}
+
+.topbar-children__desktop {
+  @extend %topbar-children;
+  margin-top: 3em;
+}
+
+.grey-background {
+  background-color: $antiflash-white !important;
+}
+
+.white-background {
+  background-color: $white !important;
+}
+
+.ui.footer.segment {
+  // border: none;
+  border-radius: 0;
+  border-right: none;
+  border-left: none;
+  bottom: 0;
+  color: $paynes-grey;
+  font-size: 10px;
+  margin: 0;
+  padding: 1.6em;
+  padding-left: 2.2em;
+  width: 100%;
+  z-index: 9;
+}
+
+.item.navbar--item {
+  background: #fff;
+  padding: 1.9em;
+}

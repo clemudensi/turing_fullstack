@@ -1,0 +1,39 @@
+service: turing-auth
+custom:
+  config: ${file(config.json)}
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${self:custom.config.stage}
+  region: ${self:custom.config.region}
+  memorySize: 512
+  environment:
+    NODE_ENV: ${self:custom.config.NODE_ENV}
+    aws_accessKeyId: ${self:custom.config.aws_accessKeyId}
+    aws_secretAccessKey: ${self:custom.config.aws_secretAccessKey}
+    UserPoolId: ${self:custom.config.UserPoolId}
+    ClientId: ${self:custom.config.ClientId}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ses:SendEmail"
+      Resource: "*"
+functions:
+  app:
+    handler: server.run
+    events:
+      - http:
+          path: api/v1/user/login
+          method: post
+      - http:
+          path: api/v1/user/signup
+          method: post
+      - http:
+          path: api/v1/user/resend-code
+          method: post
+      - http:
+          path: api/v1/user/confirm
+          method: post
+plugins:
+  - serverless-offline
+  - serverless-mocha-plugin

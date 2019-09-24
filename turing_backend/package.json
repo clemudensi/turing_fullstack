@@ -1,0 +1,97 @@
+{
+  "name": "turing_backend",
+  "version": "1.0.0",
+  "builds": [
+    {
+      "src": "server.js",
+      "config": {
+        "bundle": false
+      }
+    }
+  ],
+  "description": "turing backend with nodejs & mySQL",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "offline": "nodemon --exec \"sls offline start --port 4000 --skipCacheInvalidation\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clemudensi/turing-test.git"
+  },
+  "author": "clement udensi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clemudensi/turing-test/issues"
+  },
+  "homepage": "https://github.com/clemudensi/turing-test#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "bcrypt-nodejs": "^0.0.3",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.4",
+    "flat-cache": "^2.0.1",
+    "helmet": "^3.18.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt": "^0.2.0",
+    "lodash": "^4.17.15",
+    "memcached": "^2.2.2",
+    "memory-cache": "^0.2.0",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.5",
+    "node-fetch": "^2.5.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "randomstring": "^1.1.5",
+    "redis": "^2.8.0",
+    "sequelize": "^5.8.5",
+    "serverless": "^1.32.0",
+    "serverless-http": "^1.6.0",
+    "serverless-webpack": "^5.3.0",
+    "stripe": "^6.34.0",
+    "webpack": "^4.31.0",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {
+    "babel-loader": "^8.0.6",
+    "chai-http": "^4.3.0",
+    "serverless-mocha-plugin": "^1.10.0",
+    "serverless-offline": "^3.27.0",
+    "supertest": "^4.0.2"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "es6": true,
+      "browser": true
+    },
+    "rules": {
+      "brace-style": [
+        "error",
+        "stroustrup"
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "no-unused-vars": [
+        "warn"
+      ],
+      "no-var": [
+        "off"
+      ],
+      "one-var": [
+        "off"
+      ]
+    }
+  }
+}
