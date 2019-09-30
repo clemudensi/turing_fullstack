@@ -37,7 +37,7 @@ export const deleteOrder = (order_id) => {
       const {response} = await axios.delete(`${PRODUCTS}/orders?order_id=${order_id}`, AXIOSCONFIG);
       dispatch(deleteOrderSuccess(response));
     };
-  } catch (err) {
+  } catch(err) {
     return err;
   }
 };

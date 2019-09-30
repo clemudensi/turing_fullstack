@@ -42,7 +42,7 @@
     "test": "jest",
     "eject": "react-scripts eject",
     "lint": "eslint ./src --fix",
-    "deploy": "aws s3 sync build/ s3://turingshop --profile clem",
+    "deploy": "aws s3 sync build/ s3://turingstore --profile udensiclem",
     "prod": "serve -s build",
     "semantic-build": "npm-run-all build-css build-default && build-semantic"
   },

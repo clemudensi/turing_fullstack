@@ -14,32 +14,36 @@ const DashBoard = () => {
           Add Product
         </Header>
       </Segment>
-      <Segment>
+      <div>
         <Grid>
-          <Grid.Column width={4}>
-            <Menu fluid vertical tabular>
-              <Menu.Item name='new' active={activeItem === 'new'} onClick={handleItemClick} />
-              <Menu.Item name='purchases' active={activeItem === 'purchases'} onClick={handleItemClick} />
-              <Menu.Item
-                name='shipped-items'
-                active={activeItem === 'shipped-items'}
-                onClick={handleItemClick}
-              />
-              <Menu.Item
-                name='inventory'
-                active={activeItem === 'inventory'}
-                onClick={handleItemClick}
-              />
-            </Menu>
-          </Grid.Column>
+          <Card>
+            <CardContent>
+              <Grid.Column width={4}>
+                <Menu fluid vertical tabular>
+                  <Menu.Item name='new' active={activeItem === 'new'} onClick={handleItemClick} />
+                  <Menu.Item name='purchases' active={activeItem === 'purchases'} onClick={handleItemClick} />
+                  <Menu.Item
+                    name='shipped-items'
+                    active={activeItem === 'shipped-items'}
+                    onClick={handleItemClick}
+                  />
+                  <Menu.Item
+                    name='inventory'
+                    active={activeItem === 'inventory'}
+                    onClick={handleItemClick}
+                  />
+                </Menu>
+              </Grid.Column>
+            </CardContent>
+          </Card>
 
-          <Grid.Column stretched width={12}>
-            <Container>
+          <Grid.Column width={12} className="dashboard">
+            <Segment>
               <AddProduct/>
-            </Container>
+            </Segment>
           </Grid.Column>
         </Grid>
-      </Segment>
+      </div>
     </div>
   );
 }

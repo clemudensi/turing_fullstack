@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
@@ -13,7 +13,7 @@ const CheckOut = (props) => {
 
   const [ state, ] = useState({
     formStep: 0,
-    quantity: 1,
+    quantity: '1',
     shippingOption: [],
     shippingValues: {
       shipping_cost: 0,
@@ -74,7 +74,7 @@ const CheckOut = (props) => {
   switch (formStep) {
   case 0:
     return (
-      <Container >
+      <Container>
         <ShippingAddress
           handleNext={handleNext}
           handleChange={handleChange}
@@ -88,7 +88,7 @@ const CheckOut = (props) => {
     );
   case 1:
     return (
-      <Container >
+      <Container>
         <ProductSummary
           handleNext={handleNext}
           handleBack={handleBack}
@@ -129,7 +129,7 @@ CheckOut.propTypes = {
   handleRemoveFromCart: PropTypes.func,
   values: PropTypes.object,
   cartId: PropTypes.string,
-  history: PropTypes.func
+  history: PropTypes.object
 };
 
 export default CheckOut;

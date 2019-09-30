@@ -18,6 +18,7 @@ const SignUp = (props) => {
     signup,
     history,
     location: {state},
+    // location: {state: {previousPage}},
     signup: {
       data: {
         success
@@ -76,7 +77,7 @@ const SignUp = (props) => {
   useEffect(() => {
     if(signup.data.success === true){
       setError('');
-      history.push(state || "/");
+      history.push(state.previousPage || state || "/");
     } else {
       (setError(signup.data.msg));
       setLoading(false)

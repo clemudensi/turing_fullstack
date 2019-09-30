@@ -1,10 +1,9 @@
-import React, {useState, Component } from "react";
+import React, {useState } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
 import {
   Grid, Header, List, Form, Segment,
   Message, Divider, Input, Card,
-  TextArea, Container, Button, CardContent
+  TextArea, Container, CardContent
 } from 'semantic-ui-react';
 import { toast } from "react-toastify";
 import { contactAdmin } from '../../actions/contact_admin';
@@ -24,14 +23,14 @@ const ContactUs = (props) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [success, ] = useState('');
 
   const handleChange = (event, { name, value }) => {
     event.persist();
     setInputs({ ...inputs, [name]: value });
   };
 
-  const { email, firstName, lastName, organization, text } = inputs;
+  const { email, firstName, lastName, text } = inputs;
 
   const notify = () => {
     toast.success(`You have successfully sent a message`, {
@@ -71,7 +70,6 @@ const ContactUs = (props) => {
                 <Segment basic>
                   <Form
                     size="big"
-                    // loading={this.state.loading}
                     onSubmit={handleSubmit}
                   >
                     {success && (

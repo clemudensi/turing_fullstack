@@ -94,6 +94,7 @@ const _CardForm = (props) => {
 
         // Create an Order
         await createOrderItem(cart, shippingId, taxId);
+        console.log(id, 'Id token');
 
         // Charge Customer with stripe payment
         const chargeSuccess = orderSuccess ? await chargeCustomer(id, valueTotal) :
@@ -120,7 +121,7 @@ const _CardForm = (props) => {
 
   return (
     <React.Fragment>
-      <div className="full-page">
+      <div className="full-page stripe-pay">
         <Segment basic>
           <Header as="h3">
             Pay Securely
@@ -129,7 +130,7 @@ const _CardForm = (props) => {
         <Card fluid>
           <br/>
           <Grid textAlign="center">
-            <GridColumn width={6}>
+            <GridColumn width={14}>
               <div className="error" role="alert">
                 <p className="error-msg"><strong>{errorMessage}</strong></p>
               </div>

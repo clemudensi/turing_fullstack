@@ -120,7 +120,7 @@ const AddProduct = (props) => {
 
   return (
     <div>
-      <Grid centered={true} textAlign="center">
+      <Grid centered textAlign="center">
         <Grid.Column width={4} textAlign="center">
           <div className="ui small image">
             <img alt="placeholder" src={imageUrl} width={150} height={150} />

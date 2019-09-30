@@ -1,4 +1,4 @@
-import React, {useState, Component } from 'react';
+import React, {useState } from 'react';
 import {Responsive, Visibility } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import HomepageHeading from './HomepageHeading';

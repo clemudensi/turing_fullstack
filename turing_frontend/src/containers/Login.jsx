@@ -92,6 +92,7 @@ const Login = (props) => {
       state={inputs}
       handleBlur={handleBlur}
       errorMsg={error}
+      previousPage={state}
     />
   );
 };

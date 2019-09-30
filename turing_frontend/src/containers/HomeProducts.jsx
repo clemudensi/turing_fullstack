@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {Grid, Button, Container, Card} from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import map from 'lodash/map'
+import PropTypes from 'prop-types';
+import map from 'lodash/map';
 import { fetchProducts } from '../actions/products';
 import ShowcaseHeader from '../components/header/ShowcaseHeader';
 import ProductItem from '../components/main/ProductItem';
@@ -17,7 +18,7 @@ const HomeProducts = (props) => {
   useEffect(() => {
     fetchProducts();
     if (data === {} ){
-      setNotFound(true)
+      setNotFound(true);
     }
   }, [isLoadMore]);
 
@@ -28,13 +29,20 @@ const HomeProducts = (props) => {
 
   let hottestProduct;
 
-  switch (isLoadMore) {
-  case true:
+  if (data.length > 0) {
+    switch (isLoadMore) {
+    case true:
+      hottestProduct = data;
+      break;
+    case false:
+      hottestProduct = data.splice(0, 10);
+      break;
+    default:
+      return null;
+    }
+  }
+  else {
     hottestProduct = data;
-    break;
-  case false:
-    hottestProduct = data.splice(0, 10);
-    break;
   }
 
   const itemsProductCard = map(hottestProduct, item => (
@@ -92,10 +100,14 @@ HomeProducts.defaultProps = {
   },
 };
 
+HomeProducts.propTypes = {
+  fetchProducts: PropTypes.object,
+  data: PropTypes.array
+};
+
 export default connect(
   ({ products }) => ({ products }),
-  { fetchProducts },
-)(HomeProducts);
+  { fetchProducts })(HomeProducts);
 
 // export for testing component
-export { ProductItem }
+export { ProductItem };

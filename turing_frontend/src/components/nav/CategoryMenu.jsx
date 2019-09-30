@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import SideBarMenu from '../menu/SideBarMenu';

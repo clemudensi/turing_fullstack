@@ -2,7 +2,6 @@
 
 const Router = require('../../config/router');
 const products = require('./products');
-const auth = require('./auth');
 const department = require('./department/department');
 const category = require('./category/category');
 const attributes = require('./attributes/attributes');
@@ -14,7 +13,6 @@ const customer = require('./customers/customers');
 
 Router.use(
   ...products,
-  ...auth,
   department,
   category,
   attributes,

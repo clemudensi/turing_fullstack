@@ -54,7 +54,7 @@ const ProductSummary = ({
                     <Image className="pro-images" src={`${item.image}`} />
                   </Header>
                 </Table.Cell>
-                <Table.Cell width={4}>{item.des}</Table.Cell>
+                <Table.Cell width={6}>{item.des}</Table.Cell>
                 <Table.Cell textAlign="center">
                   {item.size}
                 </Table.Cell>

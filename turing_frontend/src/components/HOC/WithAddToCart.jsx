@@ -1,6 +1,5 @@
 import React, {useState, Fragment } from 'react';
 import {toast} from 'react-toastify';
-import { PRODUCTS } from '../../constants';
 import _ from 'lodash';
 
 const withAddToCart = (AddToCartComp) => (
@@ -24,13 +23,12 @@ const withAddToCart = (AddToCartComp) => (
     });
 
     let [cart, setCart] = useState([]);
-    const [total, setTotal] = useState(0);
-    const [page, setPage] = useState('');
+    const [, setPage] = useState('');
     // const [quantity, setQuantity] = useState(1);
     const [canAddToCart, setCanAddToCart] = useState(true);
-    const [cart_id, setCart_id] = useState('');
-    const [cartItem, setCartItem] = useState({});
-    const [addingToCart, setAddingToCart] = useState(false);
+    const [cart_id, ] = useState('');
+    const [, setCartItem] = useState({});
+    const [, setAddingToCart] = useState(false);
 
     const {firstName, lastName, address, email, country, city, phone, quantity } = inputs;
 

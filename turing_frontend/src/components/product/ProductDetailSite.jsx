@@ -14,7 +14,6 @@ const ProductDetailSite = (props) => {
     canAddToCart,
     handleChange,
     history,
-    addingToCart,
     getProductId,
     handleAddOnceToCart,
     handleBackToProducts

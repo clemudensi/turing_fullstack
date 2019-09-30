@@ -2,7 +2,6 @@ import axios from 'axios';
 import {AXIOSCONFIG, PAYMENT, USERNAME} from '../constants';
 
 export const emailConfirmation = (props) => {
-  console.log(props, 'This props')
   const {
     cart,
     values: {

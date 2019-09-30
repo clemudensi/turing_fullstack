@@ -5,7 +5,7 @@ import map from 'lodash/map';
 
 export default (dataSidebarMenu, handleItemClick, activeItem, handleProList, matchUrl) => (
   map(dataSidebarMenu, (item, index) => {
-    const itemMenu = item.replace(/\-/g, ' ').replace(/^[a-z]?/, menu => menu.toUpperCase());
+    const itemMenu = item.replace(/-/g, ' ').replace(/^[a-z]?/, menu => menu.toUpperCase());
     const link = (
       <Link
         to={`${matchUrl}/${item}?page=1`}
@@ -17,7 +17,7 @@ export default (dataSidebarMenu, handleItemClick, activeItem, handleProList, mat
       <Menu.Item
         as="li"
         key={index}
-        className={'sb-menu-item' + ' ' + `${activeItem === item ? 'selected' : ''}`}
+        className={`sb-menu-item ${activeItem === item ? 'selected' : ''}`}
         onClick={() => {
           handleItemClick(item);
           handleProList(`${matchUrl}/${item}`, item);

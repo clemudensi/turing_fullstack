@@ -15,7 +15,8 @@
       "environment": {
         "NODE_ENV": "production",
         "stripe_key": "sk_test_5E6TXlmKmhBJGdXkCHDlhTAp00iglpxEKH",
-        "EMAIL": "clementudensi@gmail.com"
+        "EMAIL": "clementudensi@gmail.com",
+        "ERROR_MAIL": "cklemmzy@gmail.com"
       },
       "iamRoleStatements": [
         {
@@ -45,6 +46,12 @@
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
               "LogGroupName": "/aws/lambda/turing-payment-dev-emailService"
+            }
+          },
+          "ErrorReportLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/turing-payment-dev-errorReport"
             }
           },
           "IamRoleLambdaExecution": {
@@ -92,6 +99,9 @@
                           },
                           {
                             "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turing-payment-dev-emailService:*"
+                          },
+                          {
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turing-payment-dev-errorReport:*"
                           }
                         ]
                       },
@@ -106,6 +116,9 @@
                           },
                           {
                             "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turing-payment-dev-emailService:*:*"
+                          },
+                          {
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turing-payment-dev-errorReport:*:*"
                           }
                         ]
                       },
@@ -137,7 +150,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/turing-payment/dev/1568712501903-2019-09-17T09:28:21.903Z/turing-payment.zip"
+                "S3Key": "serverless/turing-payment/dev/1569609033191-2019-09-27T18:30:33.191Z/turing-payment.zip"
               },
               "FunctionName": "turing-payment-dev-createCharge",
               "Handler": "functions/stripe_payment.stripePay",
@@ -154,7 +167,8 @@
                 "Variables": {
                   "NODE_ENV": "production",
                   "stripe_key": "sk_test_5E6TXlmKmhBJGdXkCHDlhTAp00iglpxEKH",
-                  "EMAIL": "clementudensi@gmail.com"
+                  "EMAIL": "clementudensi@gmail.com",
+                  "ERROR_MAIL": "cklemmzy@gmail.com"
                 }
               }
             },
@@ -163,14 +177,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreateChargeLambdaVersionbu1qYzlmKkhcLW84SjFIZMGYrsuafppS3A5c4JdqcG0": {
+          "CreateChargeLambdaVersion8E14uYL1uoIFPFdgztDLnUGelNCJjiMQKfkyGDhUV0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateChargeLambdaFunction"
               },
-              "CodeSha256": "KV/kHsKWkwJlHMWfcXL7STPN5Yufjnw9sAXlNY+fZFg="
+              "CodeSha256": "4yRZymj4fOw5tSD3kovYjm4BOQ9Oc4e3eG+lHJJxJIk="
             }
           },
           "EmailServiceLambdaFunction": {
@@ -180,10 +194,10 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/turing-payment/dev/1568712501903-2019-09-17T09:28:21.903Z/turing-payment.zip"
+                "S3Key": "serverless/turing-payment/dev/1569609033191-2019-09-27T18:30:33.191Z/turing-payment.zip"
               },
               "FunctionName": "turing-payment-dev-emailService",
-              "Handler": "functions/email_alert.emailService",
+              "Handler": "functions/email_alert.orderConfirmation",
               "MemorySize": 512,
               "Role": {
                 "Fn::GetAtt": [
@@ -197,7 +211,8 @@
                 "Variables": {
                   "NODE_ENV": "production",
                   "stripe_key": "sk_test_5E6TXlmKmhBJGdXkCHDlhTAp00iglpxEKH",
-                  "EMAIL": "clementudensi@gmail.com"
+                  "EMAIL": "clementudensi@gmail.com",
+                  "ERROR_MAIL": "cklemmzy@gmail.com"
                 }
               }
             },
@@ -206,14 +221,58 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "EmailServiceLambdaVersionlssGbPmomSr85kZdpeuKsPEpTVART7duRK4nTv2vs": {
+          "EmailServiceLambdaVersionsDgowAZD5ZcJjNCw7asNFhP92Ih6tVMztsM7Fv55LA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "EmailServiceLambdaFunction"
               },
-              "CodeSha256": "KV/kHsKWkwJlHMWfcXL7STPN5Yufjnw9sAXlNY+fZFg="
+              "CodeSha256": "4yRZymj4fOw5tSD3kovYjm4BOQ9Oc4e3eG+lHJJxJIk="
+            }
+          },
+          "ErrorReportLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/turing-payment/dev/1569609033191-2019-09-27T18:30:33.191Z/turing-payment.zip"
+              },
+              "FunctionName": "turing-payment-dev-errorReport",
+              "Handler": "functions/email_alert.errorReport",
+              "MemorySize": 512,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs8.10",
+              "Timeout": 30,
+              "Environment": {
+                "Variables": {
+                  "NODE_ENV": "production",
+                  "stripe_key": "sk_test_5E6TXlmKmhBJGdXkCHDlhTAp00iglpxEKH",
+                  "EMAIL": "clementudensi@gmail.com",
+                  "ERROR_MAIL": "cklemmzy@gmail.com"
+                }
+              }
+            },
+            "DependsOn": [
+              "ErrorReportLogGroup",
+              "IamRoleLambdaExecution"
+            ]
+          },
+          "ErrorReportLambdaVersionGemtD4gqMam2JnS747FnkVWaxfHSthynCYeN9j0x8": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "ErrorReportLambdaFunction"
+              },
+              "CodeSha256": "4yRZymj4fOw5tSD3kovYjm4BOQ9Oc4e3eG+lHJJxJIk="
             }
           },
           "ApiGatewayRestApi": {
@@ -295,6 +354,30 @@
             "Properties": {
               "ParentId": {
                 "Ref": "ApiGatewayResourceApiV1Contact"
+              },
+              "PathPart": "email",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceApiV1Error": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceApiV1"
+              },
+              "PathPart": "error",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceApiV1ErrorEmail": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceApiV1Error"
               },
               "PathPart": "email",
               "RestApiId": {
@@ -396,6 +479,53 @@
               }
             }
           },
+          "ApiGatewayMethodApiV1ErrorEmailOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true,
+                    "method.response.header.Access-Control-Allow-Credentials": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                      "method.response.header.Access-Control-Allow-Credentials": "'false'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": ""
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceApiV1ErrorEmail"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
           "ApiGatewayMethodApiV1StripeChargePost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
@@ -482,7 +612,50 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1568712504079": {
+          "ApiGatewayMethodApiV1ErrorEmailPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceApiV1ErrorEmail"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "ErrorReportLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayDeployment1569609034093": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -493,8 +666,10 @@
             "DependsOn": [
               "ApiGatewayMethodApiV1StripeChargeOptions",
               "ApiGatewayMethodApiV1ContactEmailOptions",
+              "ApiGatewayMethodApiV1ErrorEmailOptions",
               "ApiGatewayMethodApiV1StripeChargePost",
-              "ApiGatewayMethodApiV1ContactEmailPost"
+              "ApiGatewayMethodApiV1ContactEmailPost",
+              "ApiGatewayMethodApiV1ErrorEmailPost"
             ]
           },
           "CreateChargeLambdaPermissionApiGateway": {
@@ -590,6 +765,53 @@
                 ]
               }
             }
+          },
+          "ErrorReportLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "ErrorReportLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "apigateway.",
+                    {
+                      "Ref": "AWS::URLSuffix"
+                    }
+                  ]
+                ]
+              },
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
           }
         },
         "Outputs": {
@@ -601,13 +823,19 @@
           "CreateChargeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateChargeLambdaVersionbu1qYzlmKkhcLW84SjFIZMGYrsuafppS3A5c4JdqcG0"
+              "Ref": "CreateChargeLambdaVersion8E14uYL1uoIFPFdgztDLnUGelNCJjiMQKfkyGDhUV0"
             }
           },
           "EmailServiceLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "EmailServiceLambdaVersionlssGbPmomSr85kZdpeuKsPEpTVART7duRK4nTv2vs"
+              "Ref": "EmailServiceLambdaVersionsDgowAZD5ZcJjNCw7asNFhP92Ih6tVMztsM7Fv55LA"
+            }
+          },
+          "ErrorReportLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "ErrorReportLambdaVersionGemtD4gqMam2JnS747FnkVWaxfHSthynCYeN9j0x8"
             }
           },
           "ServiceEndpoint": {
@@ -655,7 +883,8 @@
         "stripe_key": "sk_test_5E6TXlmKmhBJGdXkCHDlhTAp00iglpxEKH",
         "region": "us-east-1",
         "stage": "dev",
-        "EMAIL": "clementudensi@gmail.com"
+        "EMAIL": "clementudensi@gmail.com",
+        "ERROR_MAIL": "cklemmzy@gmail.com"
       },
       "webpack": {
         "webpackConfig": "webpack.config.js",
@@ -664,7 +893,8 @@
     },
     "plugins": [
       "serverless-offline",
-      "serverless-webpack"
+      "serverless-webpack",
+      "serverless-mocha-plugin"
     ],
     "pluginsData": {},
     "functions": {
@@ -708,7 +938,7 @@
         "vpc": {}
       },
       "emailService": {
-        "handler": "functions/email_alert.emailService",
+        "handler": "functions/email_alert.orderConfirmation",
         "events": [
           {
             "http": {
@@ -745,11 +975,50 @@
         "timeout": 30,
         "runtime": "nodejs8.10",
         "vpc": {}
+      },
+      "errorReport": {
+        "handler": "functions/email_alert.errorReport",
+        "events": [
+          {
+            "http": {
+              "path": "api/v1/error/email",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "turing-payment-dev-errorReport",
+        "package": {
+          "artifact": ".serverless\\turing-payment.zip"
+        },
+        "memory": 512,
+        "timeout": 30,
+        "runtime": "nodejs8.10",
+        "vpc": {}
       }
     }
   },
   "package": {
-    "artifactDirectoryName": "serverless/turing-payment/dev/1568712501903-2019-09-17T09:28:21.903Z",
+    "artifactDirectoryName": "serverless/turing-payment/dev/1569609033191-2019-09-27T18:30:33.191Z",
     "artifact": ""
   }
 }

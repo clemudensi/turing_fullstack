@@ -13,7 +13,7 @@ import HottestProducts from '../Home/HottestProducts';
 import Routes from '../../router';
 import protectedRoutes from '../../router/protected';
 import Footer from '../Home/Footer';
-import HeaderMenu from '../nav/TopMenu';
+import HeaderMenu from '../nav/HeaderMenu';
 import withAddToCart from '../HOC/WithAddToCart';
 import MyLoader from '../../components/shared/loaders';
 import NotFound from '../staticPages/404-page';

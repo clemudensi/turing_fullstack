@@ -1,8 +1,8 @@
-export const PRODUCTS = 'https://li79z6e8h3.execute-api.us-east-1.amazonaws.com/dev/api/v1';
-export const PAYMENT = 'https://o72wbo30a5.execute-api.us-east-1.amazonaws.com/dev/api/v1';
-export const IMAGE = 'https://turingapp.s3.amazonaws.com/assets/product_images';
+export const PRODUCTS = 'https://bjrossgq82.execute-api.us-east-1.amazonaws.com/dev/api/v1';
+export const PAYMENT = 'https://3akws9d3ub.execute-api.us-east-1.amazonaws.com/dev/api/v1';
+export const IMAGE = 'https://turingstore.s3.amazonaws.com/images';
 export const AXIOSCONFIG = {
-  headers: {'Authorization': localStorage.getItem('accessToken')}
+  headers: {'Authorization': sessionStorage.getItem('accessToken')}
 };
 
 export const TOKEN = sessionStorage.getItem('accessToken');

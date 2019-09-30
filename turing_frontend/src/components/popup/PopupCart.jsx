@@ -51,7 +51,7 @@ const PopupCart = (props) => {
   return(
     <Popup
       trigger={
-        <Icon name="shopping cart">
+        <Icon name="shopping cart" className="padding-right">
           { cart.length > 0
             ? <Label color='red' floating>
               {cart.length}

@@ -1,17 +1,6 @@
 import React from 'react';
 import {Container, Icon, Item} from 'semantic-ui-react';
-import PropType from 'prop-types';
-
-const propTypes = {
-  id: PropType.number,
-  name: PropType.string,
-  salePrice: PropType.number,
-  image: PropType.string,
-  color: PropType.string,
-  size: PropType.string,
-  quantity: PropType.number,
-  handleRemoveFromCart: PropType.func
-};
+import PropTypes from 'prop-types';
 
 const OrderItem = (props) => {
   const {
@@ -43,6 +32,15 @@ const OrderItem = (props) => {
   );
 };
 
-OrderItem.propTypes = propTypes;
+OrderItem.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+  salePrice: PropTypes.number,
+  image: PropTypes.string,
+  color: PropTypes.string,
+  size: PropTypes.string,
+  quantity: PropTypes.string,
+  handleRemoveFromCart: PropTypes.func
+};
 
 export default OrderItem;

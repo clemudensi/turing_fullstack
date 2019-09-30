@@ -20,7 +20,7 @@ module.exports = (sequelize, DataType) => {
       day_phone: STRING,
       eve_phone: STRING,
       mob_phone: STRING,
-      user_type: INTEGER,
+      user_type: STRING,
       access_level: INTEGER
     },
   )

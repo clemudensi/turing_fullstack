@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, {useState, useEffect } from 'react'
-import { Search, Grid } from 'semantic-ui-react'
+import { Search } from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {searchProducts} from '../../actions/search_products'
 import {IMAGE} from '../../constants';
@@ -10,7 +10,7 @@ const initialState = { isLoading: false, results: [], value: '', products: []};
 
 const SearchProduct = (props) => {
   const {history, searchProducts, search_products: { data }} = props;
-  const [state, setState] = useState(initialState);
+  const [, setState] = useState(initialState);
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState('');

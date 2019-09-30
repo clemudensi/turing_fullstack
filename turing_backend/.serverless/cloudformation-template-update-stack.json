@@ -8,43 +8,37 @@
     "ProductsLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/turingtshirtshop-dev-products"
+        "LogGroupName": "/aws/lambda/turingshop-dev-products"
       }
     },
     "AttributesLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/turingtshirtshop-dev-attributes"
+        "LogGroupName": "/aws/lambda/turingshop-dev-attributes"
       }
     },
     "CategoriesLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/turingtshirtshop-dev-categories"
+        "LogGroupName": "/aws/lambda/turingshop-dev-categories"
       }
     },
     "OrdersLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/turingtshirtshop-dev-orders"
+        "LogGroupName": "/aws/lambda/turingshop-dev-orders"
       }
     },
     "ShoppingcartLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/turingtshirtshop-dev-shoppingcart"
+        "LogGroupName": "/aws/lambda/turingshop-dev-shoppingcart"
       }
     },
     "CustomersLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/turingtshirtshop-dev-customers"
-      }
-    },
-    "NotificationsLogGroup": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/aws/lambda/turingtshirtshop-dev-notifications"
+        "LogGroupName": "/aws/lambda/turingshop-dev-customers"
       }
     },
     "IamRoleLambdaExecution": {
@@ -73,7 +67,7 @@
                 "-",
                 [
                   "dev",
-                  "turingtshirtshop",
+                  "turingshop",
                   "lambda"
                 ]
               ]
@@ -88,25 +82,22 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-products:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-products:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-attributes:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-attributes:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-categories:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-categories:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-orders:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-orders:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-shoppingcart:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-shoppingcart:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-customers:*"
-                    },
-                    {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-notifications:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-customers:*"
                     }
                   ]
                 },
@@ -117,25 +108,22 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-products:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-products:*:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-attributes:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-attributes:*:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-categories:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-categories:*:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-orders:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-orders:*:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-shoppingcart:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-shoppingcart:*:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-customers:*:*"
-                    },
-                    {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingtshirtshop-dev-notifications:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/turingshop-dev-customers:*:*"
                     }
                   ]
                 },
@@ -155,7 +143,7 @@
           "Fn::Join": [
             "-",
             [
-              "turingtshirtshop",
+              "turingshop",
               "dev",
               "us-east-1",
               "lambdaRole"
@@ -185,9 +173,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/turingtshirtshop/dev/1569005526258-2019-09-20T18:52:06.258Z/turingtshirtshop.zip"
+          "S3Key": "serverless/turingshop/dev/1569652470593-2019-09-28T06:34:30.593Z/turingshop.zip"
         },
-        "FunctionName": "turingtshirtshop-dev-products",
+        "FunctionName": "turingshop-dev-products",
         "Handler": "server.run",
         "MemorySize": 512,
         "Role": {
@@ -202,28 +190,26 @@
           "Variables": {
             "NODE_ENV": "production",
             "DB_DATABASE": "tshirtshop",
-            "aws_accessKeyId": "AKIAITJMSQJDWGFVX56Q",
-            "aws_secretAccessKey": "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",
-            "UserPoolId": "us-east-1_fNI3VddL4",
-            "ClientId": "6lro52kv0b987kusraqctk1dta",
-            "DB_HOST": "turing.c6qwvukvdpin.us-east-1.rds.amazonaws.com",
+            "aws_accessKeyId": "AKIAJW53UIBVA6JR42ZA",
+            "aws_secretAccessKey": "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",
+            "DB_HOST": "turing.c7lwwctve4yu.us-east-1.rds.amazonaws.com",
             "DB_USER": "turing",
-            "DB_PASSWORD": "turingdb",
+            "DB_PASSWORD": "turingDB",
             "DB_PORT": 3306,
             "privateKey": "turingDB"
           }
         },
         "VpcConfig": {
           "SecurityGroupIds": [
-            "sg-045f4834679789721"
+            "sg-f51a72a4"
           ],
           "SubnetIds": [
-            "subnet-e8ec04a5",
-            "subnet-ca260396",
-            "subnet-b7012699",
-            "subnet-26a5c918",
-            "subnet-d50058b2",
-            "subnet-1461731b"
+            "subnet-864c7de1",
+            "subnet-91c3ffbf",
+            "subnet-31c4f66d",
+            "subnet-f429e8b9",
+            "subnet-ded792e0",
+            "subnet-7c39d272"
           ]
         }
       },
@@ -232,14 +218,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "ProductsLambdaVersionnmNU9kH5HwD9yo0GqZl3ndXjmxxY0fLkrSVsZDx3o": {
+    "ProductsLambdaVersionK23RjaCg29zMOtKY1Pp7GMNUeL1cDKgzDMpj48VpaA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ProductsLambdaFunction"
         },
-        "CodeSha256": "bGCmnEMXDLUv43hcwhFEm/K8V5+G5bnxpnCcCf8EC84="
+        "CodeSha256": "WBVISTSqllQitiZ9RR85/9MDeeiX9AvsgZnNdZ4SAO8="
       }
     },
     "AttributesLambdaFunction": {
@@ -249,9 +235,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/turingtshirtshop/dev/1569005526258-2019-09-20T18:52:06.258Z/turingtshirtshop.zip"
+          "S3Key": "serverless/turingshop/dev/1569652470593-2019-09-28T06:34:30.593Z/turingshop.zip"
         },
-        "FunctionName": "turingtshirtshop-dev-attributes",
+        "FunctionName": "turingshop-dev-attributes",
         "Handler": "server.run",
         "MemorySize": 512,
         "Role": {
@@ -266,28 +252,26 @@
           "Variables": {
             "NODE_ENV": "production",
             "DB_DATABASE": "tshirtshop",
-            "aws_accessKeyId": "AKIAITJMSQJDWGFVX56Q",
-            "aws_secretAccessKey": "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",
-            "UserPoolId": "us-east-1_fNI3VddL4",
-            "ClientId": "6lro52kv0b987kusraqctk1dta",
-            "DB_HOST": "turing.c6qwvukvdpin.us-east-1.rds.amazonaws.com",
+            "aws_accessKeyId": "AKIAJW53UIBVA6JR42ZA",
+            "aws_secretAccessKey": "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",
+            "DB_HOST": "turing.c7lwwctve4yu.us-east-1.rds.amazonaws.com",
             "DB_USER": "turing",
-            "DB_PASSWORD": "turingdb",
+            "DB_PASSWORD": "turingDB",
             "DB_PORT": 3306,
             "privateKey": "turingDB"
           }
         },
         "VpcConfig": {
           "SecurityGroupIds": [
-            "sg-045f4834679789721"
+            "sg-f51a72a4"
           ],
           "SubnetIds": [
-            "subnet-e8ec04a5",
-            "subnet-ca260396",
-            "subnet-b7012699",
-            "subnet-26a5c918",
-            "subnet-d50058b2",
-            "subnet-1461731b"
+            "subnet-864c7de1",
+            "subnet-91c3ffbf",
+            "subnet-31c4f66d",
+            "subnet-f429e8b9",
+            "subnet-ded792e0",
+            "subnet-7c39d272"
           ]
         }
       },
@@ -296,14 +280,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "AttributesLambdaVersionCGpfJ7eZklsX7oIdVklGqZvGJLeI8FjcwgQ8WCk": {
+    "AttributesLambdaVersionVTTcjGQ8Cl2tgmLE5fgeY42LjquGR6A7YzqVGtZ3Xw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AttributesLambdaFunction"
         },
-        "CodeSha256": "bGCmnEMXDLUv43hcwhFEm/K8V5+G5bnxpnCcCf8EC84="
+        "CodeSha256": "WBVISTSqllQitiZ9RR85/9MDeeiX9AvsgZnNdZ4SAO8="
       }
     },
     "CategoriesLambdaFunction": {
@@ -313,9 +297,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/turingtshirtshop/dev/1569005526258-2019-09-20T18:52:06.258Z/turingtshirtshop.zip"
+          "S3Key": "serverless/turingshop/dev/1569652470593-2019-09-28T06:34:30.593Z/turingshop.zip"
         },
-        "FunctionName": "turingtshirtshop-dev-categories",
+        "FunctionName": "turingshop-dev-categories",
         "Handler": "server.run",
         "MemorySize": 512,
         "Role": {
@@ -330,28 +314,26 @@
           "Variables": {
             "NODE_ENV": "production",
             "DB_DATABASE": "tshirtshop",
-            "aws_accessKeyId": "AKIAITJMSQJDWGFVX56Q",
-            "aws_secretAccessKey": "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",
-            "UserPoolId": "us-east-1_fNI3VddL4",
-            "ClientId": "6lro52kv0b987kusraqctk1dta",
-            "DB_HOST": "turing.c6qwvukvdpin.us-east-1.rds.amazonaws.com",
+            "aws_accessKeyId": "AKIAJW53UIBVA6JR42ZA",
+            "aws_secretAccessKey": "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",
+            "DB_HOST": "turing.c7lwwctve4yu.us-east-1.rds.amazonaws.com",
             "DB_USER": "turing",
-            "DB_PASSWORD": "turingdb",
+            "DB_PASSWORD": "turingDB",
             "DB_PORT": 3306,
             "privateKey": "turingDB"
           }
         },
         "VpcConfig": {
           "SecurityGroupIds": [
-            "sg-045f4834679789721"
+            "sg-f51a72a4"
           ],
           "SubnetIds": [
-            "subnet-e8ec04a5",
-            "subnet-ca260396",
-            "subnet-b7012699",
-            "subnet-26a5c918",
-            "subnet-d50058b2",
-            "subnet-1461731b"
+            "subnet-864c7de1",
+            "subnet-91c3ffbf",
+            "subnet-31c4f66d",
+            "subnet-f429e8b9",
+            "subnet-ded792e0",
+            "subnet-7c39d272"
           ]
         }
       },
@@ -360,14 +342,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "CategoriesLambdaVersionXctm5Xb1BAusRtVOBPUpYIghMQuJObM7pgqNJdvR8gU": {
+    "CategoriesLambdaVersionXT68nv99e5mV277G2l6fU2BH2r9dihFxv49Do0LexI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CategoriesLambdaFunction"
         },
-        "CodeSha256": "bGCmnEMXDLUv43hcwhFEm/K8V5+G5bnxpnCcCf8EC84="
+        "CodeSha256": "WBVISTSqllQitiZ9RR85/9MDeeiX9AvsgZnNdZ4SAO8="
       }
     },
     "OrdersLambdaFunction": {
@@ -377,9 +359,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/turingtshirtshop/dev/1569005526258-2019-09-20T18:52:06.258Z/turingtshirtshop.zip"
+          "S3Key": "serverless/turingshop/dev/1569652470593-2019-09-28T06:34:30.593Z/turingshop.zip"
         },
-        "FunctionName": "turingtshirtshop-dev-orders",
+        "FunctionName": "turingshop-dev-orders",
         "Handler": "server.run",
         "MemorySize": 512,
         "Role": {
@@ -394,28 +376,26 @@
           "Variables": {
             "NODE_ENV": "production",
             "DB_DATABASE": "tshirtshop",
-            "aws_accessKeyId": "AKIAITJMSQJDWGFVX56Q",
-            "aws_secretAccessKey": "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",
-            "UserPoolId": "us-east-1_fNI3VddL4",
-            "ClientId": "6lro52kv0b987kusraqctk1dta",
-            "DB_HOST": "turing.c6qwvukvdpin.us-east-1.rds.amazonaws.com",
+            "aws_accessKeyId": "AKIAJW53UIBVA6JR42ZA",
+            "aws_secretAccessKey": "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",
+            "DB_HOST": "turing.c7lwwctve4yu.us-east-1.rds.amazonaws.com",
             "DB_USER": "turing",
-            "DB_PASSWORD": "turingdb",
+            "DB_PASSWORD": "turingDB",
             "DB_PORT": 3306,
             "privateKey": "turingDB"
           }
         },
         "VpcConfig": {
           "SecurityGroupIds": [
-            "sg-045f4834679789721"
+            "sg-f51a72a4"
           ],
           "SubnetIds": [
-            "subnet-e8ec04a5",
-            "subnet-ca260396",
-            "subnet-b7012699",
-            "subnet-26a5c918",
-            "subnet-d50058b2",
-            "subnet-1461731b"
+            "subnet-864c7de1",
+            "subnet-91c3ffbf",
+            "subnet-31c4f66d",
+            "subnet-f429e8b9",
+            "subnet-ded792e0",
+            "subnet-7c39d272"
           ]
         }
       },
@@ -424,14 +404,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "OrdersLambdaVersionhy58PdgeV9e34ro2NFpPpy0xBgxgVYMzXTPVxGwlFY": {
+    "OrdersLambdaVersionjOH67gIAhIMBLbxsip1lDTlXQhcvH77UQajyzeBYvA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "OrdersLambdaFunction"
         },
-        "CodeSha256": "bGCmnEMXDLUv43hcwhFEm/K8V5+G5bnxpnCcCf8EC84="
+        "CodeSha256": "WBVISTSqllQitiZ9RR85/9MDeeiX9AvsgZnNdZ4SAO8="
       }
     },
     "ShoppingcartLambdaFunction": {
@@ -441,9 +421,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/turingtshirtshop/dev/1569005526258-2019-09-20T18:52:06.258Z/turingtshirtshop.zip"
+          "S3Key": "serverless/turingshop/dev/1569652470593-2019-09-28T06:34:30.593Z/turingshop.zip"
         },
-        "FunctionName": "turingtshirtshop-dev-shoppingcart",
+        "FunctionName": "turingshop-dev-shoppingcart",
         "Handler": "server.run",
         "MemorySize": 512,
         "Role": {
@@ -458,28 +438,26 @@
           "Variables": {
             "NODE_ENV": "production",
             "DB_DATABASE": "tshirtshop",
-            "aws_accessKeyId": "AKIAITJMSQJDWGFVX56Q",
-            "aws_secretAccessKey": "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",
-            "UserPoolId": "us-east-1_fNI3VddL4",
-            "ClientId": "6lro52kv0b987kusraqctk1dta",
-            "DB_HOST": "turing.c6qwvukvdpin.us-east-1.rds.amazonaws.com",
+            "aws_accessKeyId": "AKIAJW53UIBVA6JR42ZA",
+            "aws_secretAccessKey": "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",
+            "DB_HOST": "turing.c7lwwctve4yu.us-east-1.rds.amazonaws.com",
             "DB_USER": "turing",
-            "DB_PASSWORD": "turingdb",
+            "DB_PASSWORD": "turingDB",
             "DB_PORT": 3306,
             "privateKey": "turingDB"
           }
         },
         "VpcConfig": {
           "SecurityGroupIds": [
-            "sg-045f4834679789721"
+            "sg-f51a72a4"
           ],
           "SubnetIds": [
-            "subnet-e8ec04a5",
-            "subnet-ca260396",
-            "subnet-b7012699",
-            "subnet-26a5c918",
-            "subnet-d50058b2",
-            "subnet-1461731b"
+            "subnet-864c7de1",
+            "subnet-91c3ffbf",
+            "subnet-31c4f66d",
+            "subnet-f429e8b9",
+            "subnet-ded792e0",
+            "subnet-7c39d272"
           ]
         }
       },
@@ -488,14 +466,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "ShoppingcartLambdaVersionBu0tlEJ0fih1KqoYnFYBcyLbyJOh9LVpQ11MlP75kc4": {
+    "ShoppingcartLambdaVersionyKyAxFCsiqSTTAhBF0S3sAgDrmpUnmXucrZZdk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ShoppingcartLambdaFunction"
         },
-        "CodeSha256": "bGCmnEMXDLUv43hcwhFEm/K8V5+G5bnxpnCcCf8EC84="
+        "CodeSha256": "WBVISTSqllQitiZ9RR85/9MDeeiX9AvsgZnNdZ4SAO8="
       }
     },
     "CustomersLambdaFunction": {
@@ -505,9 +483,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/turingtshirtshop/dev/1569005526258-2019-09-20T18:52:06.258Z/turingtshirtshop.zip"
+          "S3Key": "serverless/turingshop/dev/1569652470593-2019-09-28T06:34:30.593Z/turingshop.zip"
         },
-        "FunctionName": "turingtshirtshop-dev-customers",
+        "FunctionName": "turingshop-dev-customers",
         "Handler": "server.run",
         "MemorySize": 512,
         "Role": {
@@ -522,28 +500,26 @@
           "Variables": {
             "NODE_ENV": "production",
             "DB_DATABASE": "tshirtshop",
-            "aws_accessKeyId": "AKIAITJMSQJDWGFVX56Q",
-            "aws_secretAccessKey": "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",
-            "UserPoolId": "us-east-1_fNI3VddL4",
-            "ClientId": "6lro52kv0b987kusraqctk1dta",
-            "DB_HOST": "turing.c6qwvukvdpin.us-east-1.rds.amazonaws.com",
+            "aws_accessKeyId": "AKIAJW53UIBVA6JR42ZA",
+            "aws_secretAccessKey": "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",
+            "DB_HOST": "turing.c7lwwctve4yu.us-east-1.rds.amazonaws.com",
             "DB_USER": "turing",
-            "DB_PASSWORD": "turingdb",
+            "DB_PASSWORD": "turingDB",
             "DB_PORT": 3306,
             "privateKey": "turingDB"
           }
         },
         "VpcConfig": {
           "SecurityGroupIds": [
-            "sg-045f4834679789721"
+            "sg-f51a72a4"
           ],
           "SubnetIds": [
-            "subnet-e8ec04a5",
-            "subnet-ca260396",
-            "subnet-b7012699",
-            "subnet-26a5c918",
-            "subnet-d50058b2",
-            "subnet-1461731b"
+            "subnet-864c7de1",
+            "subnet-91c3ffbf",
+            "subnet-31c4f66d",
+            "subnet-f429e8b9",
+            "subnet-ded792e0",
+            "subnet-7c39d272"
           ]
         }
       },
@@ -552,84 +528,20 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "CustomersLambdaVersionzmE0NeqkRTHBmMAfwwZCAxOQgIEACuYnygOlyGYdY": {
+    "CustomersLambdaVersionmTpaXUDaXlidzlx9rgET9xDQDjotPG44mbOGwY4s": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CustomersLambdaFunction"
         },
-        "CodeSha256": "bGCmnEMXDLUv43hcwhFEm/K8V5+G5bnxpnCcCf8EC84="
-      }
-    },
-    "NotificationsLambdaFunction": {
-      "Type": "AWS::Lambda::Function",
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "S3Key": "serverless/turingtshirtshop/dev/1569005526258-2019-09-20T18:52:06.258Z/turingtshirtshop.zip"
-        },
-        "FunctionName": "turingtshirtshop-dev-notifications",
-        "Handler": "server.run",
-        "MemorySize": 512,
-        "Role": {
-          "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
-            "Arn"
-          ]
-        },
-        "Runtime": "nodejs8.10",
-        "Timeout": 30,
-        "Environment": {
-          "Variables": {
-            "NODE_ENV": "production",
-            "DB_DATABASE": "tshirtshop",
-            "aws_accessKeyId": "AKIAITJMSQJDWGFVX56Q",
-            "aws_secretAccessKey": "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",
-            "UserPoolId": "us-east-1_fNI3VddL4",
-            "ClientId": "6lro52kv0b987kusraqctk1dta",
-            "DB_HOST": "turing.c6qwvukvdpin.us-east-1.rds.amazonaws.com",
-            "DB_USER": "turing",
-            "DB_PASSWORD": "turingdb",
-            "DB_PORT": 3306,
-            "privateKey": "turingDB"
-          }
-        },
-        "VpcConfig": {
-          "SecurityGroupIds": [
-            "sg-045f4834679789721"
-          ],
-          "SubnetIds": [
-            "subnet-e8ec04a5",
-            "subnet-ca260396",
-            "subnet-b7012699",
-            "subnet-26a5c918",
-            "subnet-d50058b2",
-            "subnet-1461731b"
-          ]
-        }
-      },
-      "DependsOn": [
-        "NotificationsLogGroup",
-        "IamRoleLambdaExecution"
-      ]
-    },
-    "NotificationsLambdaVersionb9BaoCX8dNcvZ7PIoYACcC0cDHGDP53epCNi9dYGg": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "NotificationsLambdaFunction"
-        },
-        "CodeSha256": "bGCmnEMXDLUv43hcwhFEm/K8V5+G5bnxpnCcCf8EC84="
+        "CodeSha256": "WBVISTSqllQitiZ9RR85/9MDeeiX9AvsgZnNdZ4SAO8="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "dev-turingtshirtshop",
+        "Name": "dev-turingshop",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -1492,30 +1404,6 @@
         }
       }
     },
-    "ApiGatewayResourceApiV1Contact": {
-      "Type": "AWS::ApiGateway::Resource",
-      "Properties": {
-        "ParentId": {
-          "Ref": "ApiGatewayResourceApiV1"
-        },
-        "PathPart": "contact",
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        }
-      }
-    },
-    "ApiGatewayResourceApiV1ContactEmail": {
-      "Type": "AWS::ApiGateway::Resource",
-      "Properties": {
-        "ParentId": {
-          "Ref": "ApiGatewayResourceApiV1Contact"
-        },
-        "PathPart": "email",
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        }
-      }
-    },
     "ApiGatewayMethodApiV1ProductOptions": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -2262,53 +2150,6 @@
         },
         "ResourceId": {
           "Ref": "ApiGatewayResourceApiV1CustomerCreditcard"
-        },
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        }
-      }
-    },
-    "ApiGatewayMethodApiV1ContactEmailOptions": {
-      "Type": "AWS::ApiGateway::Method",
-      "Properties": {
-        "AuthorizationType": "NONE",
-        "HttpMethod": "OPTIONS",
-        "MethodResponses": [
-          {
-            "StatusCode": "200",
-            "ResponseParameters": {
-              "method.response.header.Access-Control-Allow-Origin": true,
-              "method.response.header.Access-Control-Allow-Headers": true,
-              "method.response.header.Access-Control-Allow-Methods": true,
-              "method.response.header.Access-Control-Allow-Credentials": true
-            },
-            "ResponseModels": {}
-          }
-        ],
-        "RequestParameters": {},
-        "Integration": {
-          "Type": "MOCK",
-          "RequestTemplates": {
-            "application/json": "{statusCode:200}"
-          },
-          "ContentHandling": "CONVERT_TO_TEXT",
-          "IntegrationResponses": [
-            {
-              "StatusCode": "200",
-              "ResponseParameters": {
-                "method.response.header.Access-Control-Allow-Origin": "'*'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
-                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
-                "method.response.header.Access-Control-Allow-Credentials": "'false'"
-              },
-              "ResponseTemplates": {
-                "application/json": ""
-              }
-            }
-          ]
-        },
-        "ResourceId": {
-          "Ref": "ApiGatewayResourceApiV1ContactEmail"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -4852,50 +4693,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayMethodApiV1ContactEmailPost": {
-      "Type": "AWS::ApiGateway::Method",
-      "Properties": {
-        "HttpMethod": "POST",
-        "RequestParameters": {},
-        "ResourceId": {
-          "Ref": "ApiGatewayResourceApiV1ContactEmail"
-        },
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        },
-        "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
-        "Integration": {
-          "IntegrationHttpMethod": "POST",
-          "Type": "AWS_PROXY",
-          "Uri": {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
-                {
-                  "Fn::GetAtt": [
-                    "NotificationsLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "/invocations"
-              ]
-            ]
-          }
-        },
-        "MethodResponses": []
-      }
-    },
-    "ApiGatewayDeployment1569005532187": {
+    "ApiGatewayDeployment1569652473225": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -4920,7 +4718,6 @@
         "ApiGatewayMethodApiV1CustomerCustomeridVarOptions",
         "ApiGatewayMethodApiV1CustomerAddressOptions",
         "ApiGatewayMethodApiV1CustomerCreditcardOptions",
-        "ApiGatewayMethodApiV1ContactEmailOptions",
         "ApiGatewayMethodApiV1ProductsGet",
         "ApiGatewayMethodApiV1ProductLastGet",
         "ApiGatewayMethodApiV1ProductsAllGet",
@@ -4979,8 +4776,7 @@
         "ApiGatewayMethodApiV1CustomerCustomeridVarPut",
         "ApiGatewayMethodApiV1CustomerPut",
         "ApiGatewayMethodApiV1CustomerAddressPut",
-        "ApiGatewayMethodApiV1CustomerCreditcardPut",
-        "ApiGatewayMethodApiV1ContactEmailPost"
+        "ApiGatewayMethodApiV1CustomerCreditcardPut"
       ]
     },
     "ProductsLambdaPermissionApiGateway": {
@@ -5264,70 +5060,6 @@
           ]
         }
       }
-    },
-    "NotificationsLambdaPermissionApiGateway": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "NotificationsLambdaFunction",
-            "Arn"
-          ]
-        },
-        "Action": "lambda:InvokeFunction",
-        "Principal": {
-          "Fn::Join": [
-            "",
-            [
-              "apigateway.",
-              {
-                "Ref": "AWS::URLSuffix"
-              }
-            ]
-          ]
-        },
-        "SourceArn": {
-          "Fn::Join": [
-            "",
-            [
-              "arn:",
-              {
-                "Ref": "AWS::Partition"
-              },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
-              {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "/*/*"
-            ]
-          ]
-        }
-      }
-    },
-    "RDSDatabase": {
-      "Type": "AWS::RDS::DBInstance",
-      "Properties": {
-        "Engine": "mysql",
-        "MasterUsername": "turing",
-        "MasterUserPassword": "turingdb",
-        "DBInstanceClass": "db.t2.micro",
-        "AllocatedStorage": "5",
-        "PubliclyAccessible": true,
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": "tshirtshop"
-          }
-        ]
-      }
     }
   },
   "Outputs": {
@@ -5339,43 +5071,37 @@
     "ProductsLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ProductsLambdaVersionnmNU9kH5HwD9yo0GqZl3ndXjmxxY0fLkrSVsZDx3o"
+        "Ref": "ProductsLambdaVersionK23RjaCg29zMOtKY1Pp7GMNUeL1cDKgzDMpj48VpaA"
       }
     },
     "AttributesLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AttributesLambdaVersionCGpfJ7eZklsX7oIdVklGqZvGJLeI8FjcwgQ8WCk"
+        "Ref": "AttributesLambdaVersionVTTcjGQ8Cl2tgmLE5fgeY42LjquGR6A7YzqVGtZ3Xw"
       }
     },
     "CategoriesLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CategoriesLambdaVersionXctm5Xb1BAusRtVOBPUpYIghMQuJObM7pgqNJdvR8gU"
+        "Ref": "CategoriesLambdaVersionXT68nv99e5mV277G2l6fU2BH2r9dihFxv49Do0LexI"
       }
     },
     "OrdersLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "OrdersLambdaVersionhy58PdgeV9e34ro2NFpPpy0xBgxgVYMzXTPVxGwlFY"
+        "Ref": "OrdersLambdaVersionjOH67gIAhIMBLbxsip1lDTlXQhcvH77UQajyzeBYvA"
       }
     },
     "ShoppingcartLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ShoppingcartLambdaVersionBu0tlEJ0fih1KqoYnFYBcyLbyJOh9LVpQ11MlP75kc4"
+        "Ref": "ShoppingcartLambdaVersionyKyAxFCsiqSTTAhBF0S3sAgDrmpUnmXucrZZdk"
       }
     },
     "CustomersLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CustomersLambdaVersionzmE0NeqkRTHBmMAfwwZCAxOQgIEACuYnygOlyGYdY"
-      }
-    },
-    "NotificationsLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "NotificationsLambdaVersionb9BaoCX8dNcvZ7PIoYACcC0cDHGDP53epCNi9dYGg"
+        "Ref": "CustomersLambdaVersionmTpaXUDaXlidzlx9rgET9xDQDjotPG44mbOGwY4s"
       }
     },
     "ServiceEndpoint": {

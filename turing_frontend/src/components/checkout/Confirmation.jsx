@@ -8,7 +8,7 @@ const Confirmation = () => {
   if(props){
     const { cart, valueTotal, totalShipping, itemTotal } = props;
     return(
-      <Container className="full-page card-padding">
+      <Container className="full-page">
         <Card.Group>
           <Card fluid className="card" >
             <br/>
@@ -86,7 +86,11 @@ const Confirmation = () => {
   else {
     return (
       <div className="full-page">
-        <h2>No order found</h2>
+        <Card>
+          <Card.Content>
+            <h2>No order found</h2>
+          </Card.Content>
+        </Card>
       </div>
     );
   }

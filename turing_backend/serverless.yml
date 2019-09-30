@@ -1,4 +1,4 @@
-service: turingtshirtshop
+service: turingshop
 custom:
   config: ${file(config.json)}
   webpack:
@@ -20,8 +20,6 @@ provider:
     DB_DATABASE: ${self:custom.config.DB_DATABASE}
     aws_accessKeyId: ${self:custom.config.aws_accessKeyId}
     aws_secretAccessKey: ${self:custom.config.aws_secretAccessKey}
-    UserPoolId: ${self:custom.config.UserPoolId}
-    ClientId: ${self:custom.config.ClientId}
     DB_HOST: ${self:custom.config.DB_HOST}
     DB_USER: ${self:custom.config.DB_USER}
     DB_PASSWORD: ${self:custom.config.DB_PASSWORD}
@@ -31,12 +29,12 @@ provider:
     securityGroupIds:
       - ${self:custom.config.securityGroupID}
     subnetIds:
-      - subnet-e8ec04a5
-      - subnet-ca260396
-      - subnet-b7012699
-      - subnet-26a5c918
-      - subnet-d50058b2
-      - subnet-1461731b
+      - subnet-864c7de1
+      - subnet-91c3ffbf
+      - subnet-31c4f66d
+      - subnet-f429e8b9
+      - subnet-ded792e0
+      - subnet-7c39d272
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -408,21 +406,21 @@ functions:
               - X-Api-Key
               - X-Amz-Security-Token
             allowCredentials: false
-resources:
-  Resources:
-    RDSDatabase:
-      Type: AWS::RDS::DBInstance
-      Properties:
-        Engine : mysql
-        MasterUsername: ${self:custom.config.DB_USER}
-        MasterUserPassword: ${self:custom.config.DB_PASSWORD}
-        DBInstanceClass : db.t2.micro
-        AllocatedStorage: '5'
-        PubliclyAccessible: true
-        Tags:
-          -
-            Key: "Name"
-            Value: ${self:custom.config.DB_DATABASE}
+#resources:
+#  Resources:
+#    RDSDatabase:
+#      Type: AWS::RDS::DBInstance
+#      Properties:
+#        Engine : mysql
+#        MasterUsername: ${self:custom.config.DB_USER}
+#        MasterUserPassword: ${self:custom.config.DB_PASSWORD}
+#        DBInstanceClass : db.t2.micro
+#        AllocatedStorage: '5'
+#        PubliclyAccessible: true
+#        Tags:
+#          -
+#            Key: "Name"
+#            Value: ${self:custom.config.DB_DATABASE}
 
 plugins:
   - serverless-offline

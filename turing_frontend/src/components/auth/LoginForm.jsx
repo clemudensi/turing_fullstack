@@ -15,6 +15,7 @@ const propTypes = {
   errorMsg: PropType.string,
   handleBlur: PropType.func,
   state: PropType.object,
+  previousPage: PropType.string,
   handleSubmit: PropType.func
 };
 
@@ -28,6 +29,7 @@ const LoginForm = React.memo(({
   errors,
   errorMsg,
   state,
+  previousPage,
   handleBlur
 }) => (
   <React.Fragment>
@@ -89,7 +91,10 @@ const LoginForm = React.memo(({
         <Message>
             New to us?
           {' '}
-          <Link to={'/signup'}>Sign Up</Link>
+          <Link to={{
+            pathname: '/signup',
+            state: {previousPage}
+          }}>Sign Up</Link>
         </Message>
       </Grid.Column>
     </Grid>
