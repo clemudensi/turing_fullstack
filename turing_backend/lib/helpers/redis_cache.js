@@ -1,24 +1,5 @@
-const RedisClustr = require('redis-clustr');
-const RedisClient = require('redis');
-
-const client = new RedisClustr({
-
-  servers: [
-    {
-
-      host: process.env.REDIS_HOST,
-      port: process.env.REDIS_PORT
-
-    }
-  ],
-
-  createClient: function (port, host) {
-    return RedisClient.createClient(port, host);
-
-  }
-
-});
-
+const redis = require('redis'),
+  client = redis.createClient({host : 'localhost', port : 6379});
 client.on('connect', ()=>console.log('Redis connected'));
 
 const midWare = (req, res, next) => {
@@ -38,5 +19,11 @@ const midWare = (req, res, next) => {
     }
   })
 };
+
+// const elasticache = new AWS.ElastiCache();
+// const midWare = elasticache.addTagsToResource(function (err, data) {
+//   if (err) console.log(err, err.stack); // an error occurred
+//   else     console.log(data);           // successful response
+// });
 
 module.exports = midWare;

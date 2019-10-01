@@ -24,6 +24,8 @@ provider:
     DB_USER: ${self:custom.config.DB_USER}
     DB_PASSWORD: ${self:custom.config.DB_PASSWORD}
     DB_PORT: ${self:custom.config.DB_PORT}
+    REDIS_PORT: ${self:custom.config.REDIS_PORT}
+    REDIS_HOST: ${self:custom.config.REDIS_HOST}
     privateKey: ${self:custom.config.privateKey}
   vpc:
     securityGroupIds:

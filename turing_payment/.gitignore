@@ -10,6 +10,9 @@ jspm_packages
 # jetbrain
 /.idea
 
+#serverless
+/.serverless
+
 # misc
 .DS_Store
 npm-debug.log*
