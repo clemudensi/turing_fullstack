@@ -95,7 +95,7 @@ const ProductForm = ({
 
     <Container textAlign='center'>
       <Button
-        color="pink"
+        color="teal"
         fluid
         size="large"
         loading={loading}

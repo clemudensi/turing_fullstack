@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {Card, Grid} from 'semantic-ui-react';
+import {Card, Grid, Segment} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import SidebarMenu from '../nav/CategoryMenu';
 import CategoryProducts from '../../containers/CategoryProducts';
@@ -29,55 +29,51 @@ const ProductDepartment = (props) => {
     setPage(page);
   };
 
-  const handlePagination = ({activePage}) => {
-    setPage(activePage);
-    history.push(`?page=${activePage}`);
-  };
-
   const currentPath = match.url;
   return (
-    <Grid id="main-wrap">
-      <Card>
-        <Card.Content>
-          <Grid.Column as="aside" width={3} textAlign="left">
-            <SearchProduct
-              location={location}
-              history={history}
-              fluid
-            />
-            <Route>
+    <Grid id="main-wrap" stackable>
+      <Grid.Row>
+        <Grid.Column as="aside" width={3} textAlign="left">
+          <Card fluid>
+            <Card.Content>
+              <SearchProduct
+                location={location}
+                history={history}
+                fluid
+              />
+              <Route>
+                {({match, location}) => (
+                  <SidebarMenu match={match} location={location} handleProList={handleProList}/>
+                )}
+              </Route>
+            </Card.Content>
+          </Card>
+        </Grid.Column>
+        <Grid.Column as="section" width={12}>
+          <Switch>
+            <Route
+              exact
+              path={`${currentPath}/*`}
+            >
               {({match, location}) => (
-                <SidebarMenu match={match} location={location} handleProList={handleProList}/>
+                <CategoryProducts
+                  location={location}
+                  dataProducts={dataProducts}
+                  showcaseHeader={nameProList}
+                  page={page}
+                  {...props}
+                />
               )}
             </Route>
-          </Grid.Column>
-        </Card.Content>
-      </Card>
-      <Grid.Column as="section" width={10}>
-        <Switch>
-          <Route
-            exact
-            path={`${currentPath}/*`}
-          >
-            {({match, location}) => (
-              <CategoryProducts
-                location={location}
-                dataProducts={dataProducts}
-                showcaseHeader={nameProList}
-                page={page}
-                handlePagination={handlePagination}
-                {...props}
-              />
-            )}
-          </Route>
-          <Route
-            exact
-            path={currentPath}
-          >
-            <CategoryBanner bannerPath={currentPath}/>
-          </Route>
-        </Switch>
-      </Grid.Column>
+            <Route
+              exact
+              path={currentPath}
+            >
+              <CategoryBanner bannerPath={currentPath}/>
+            </Route>
+          </Switch>
+        </Grid.Column>
+      </Grid.Row>
     </Grid>
   );
 };

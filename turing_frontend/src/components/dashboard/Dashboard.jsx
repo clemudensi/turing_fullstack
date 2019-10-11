@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
-import {Card, CardContent, Container, Grid, Header, Menu, Segment} from 'semantic-ui-react';
-import AddProduct from '../product/AddProduct';
+import {Grid, Header, Menu, Segment} from 'semantic-ui-react';
+import AddProduct from '../../containers/AddProduct';
 
 const DashBoard = () => {
   const [activeItem, setActiveItem] = useState('new');
@@ -14,38 +14,34 @@ const DashBoard = () => {
           Add Product
         </Header>
       </Segment>
-      <div>
-        <Grid>
-          <Card>
-            <CardContent>
-              <Grid.Column width={4}>
-                <Menu fluid vertical tabular>
-                  <Menu.Item name='new' active={activeItem === 'new'} onClick={handleItemClick} />
-                  <Menu.Item name='purchases' active={activeItem === 'purchases'} onClick={handleItemClick} />
-                  <Menu.Item
-                    name='shipped-items'
-                    active={activeItem === 'shipped-items'}
-                    onClick={handleItemClick}
-                  />
-                  <Menu.Item
-                    name='inventory'
-                    active={activeItem === 'inventory'}
-                    onClick={handleItemClick}
-                  />
-                </Menu>
-              </Grid.Column>
-            </CardContent>
-          </Card>
+      <Grid stackable>
+        <Grid.Column width={4} className="dashboard">
+          <Segment>
+            <Menu fluid vertical tabular>
+              <Menu.Item name='new' active={activeItem === 'new'} onClick={handleItemClick} />
+              <Menu.Item name='purchases' active={activeItem === 'purchases'} onClick={handleItemClick} />
+              <Menu.Item
+                name='shipped-items'
+                active={activeItem === 'shipped-items'}
+                onClick={handleItemClick}
+              />
+              <Menu.Item
+                name='inventory'
+                active={activeItem === 'inventory'}
+                onClick={handleItemClick}
+              />
+            </Menu>
+          </Segment>
+        </Grid.Column>
 
-          <Grid.Column width={12} className="dashboard">
-            <Segment>
-              <AddProduct/>
-            </Segment>
-          </Grid.Column>
-        </Grid>
-      </div>
+        <Grid.Column width={10} className="dashboard">
+          <Segment>
+            <AddProduct/>
+          </Segment>
+        </Grid.Column>
+      </Grid>
     </div>
   );
-}
+};
 
 export default DashBoard;

@@ -19,7 +19,8 @@ const HeaderMenu = (props) => {
     tokenValid,
     logOut,
     user_login,
-    signup
+    signup,
+    history
   } = props;
   const [ state, setState ] = useState({ activeItem: '', fixed: ''});
   const [activeItem, setActiveItem] = useState('');
@@ -116,7 +117,7 @@ const HeaderMenu = (props) => {
 
           {
             validateToken(user_login.token || signup.token) || tokenValid ?
-              <Dropdown item trigger={trigger} as='ul' name='products' textalign="right">
+              <Dropdown item trigger={trigger} as='ul' name='products' >
                 <Dropdown.Menu className="sb-menu-item">
                   <Dropdown.Item >
                     <NavLink to={'/dashboard'}>Dashboard</NavLink>
@@ -127,11 +128,15 @@ const HeaderMenu = (props) => {
                 </Dropdown.Menu>
               </Dropdown> :
               <div>
-                <Button inverted style={{ marginLeft: '0.5em' }} color="pink">
-                  <NavLink to={'/login'}>Log in</NavLink>
+                <Button style={{ marginLeft: '0.5em' }} color="teal"
+                        onClick={()=> history.push('/login')}
+                >
+                  Log in
                 </Button>
-                <Button inverted style={{ marginLeft: '0.5em' }} color="pink">
-                  <NavLink to={'/signup'}>Sign Up</NavLink>
+                <Button style={{ marginLeft: '0.5em' }} color="teal"
+                        onClick={()=> history.push('/signup')}
+                >
+                  Sign Up
                 </Button>
               </div>
           }

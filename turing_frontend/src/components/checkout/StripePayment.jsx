@@ -10,8 +10,8 @@ import {connect} from 'react-redux';
 import map from 'lodash/map'
 import axios from 'axios';
 import {createOrder, deleteOrder} from '../../actions/order';
-import {emailConfirmation, errorReport} from '../../util/emailConfirmation';
-import { PAYMENT, USERNAME} from '../../constants';
+import {emailConfirmation, errorReport} from '../../util/emailNotification';
+import { PAYMENT} from '../../constants';
 
 // You can customize your Elements to give it the look and feel of your site.
 const createOptions = () => {
@@ -33,15 +33,17 @@ const createOptions = () => {
   }
 };
 
-const errMsg = 'There was an error processing order';
+const errMsg = 'There was an error processing order, check payment details';
 
 const _CardForm = (props) => {
-  const {cart, shippingId, taxId, valueTotal, handleBack, handleReset,
-    totalShipping, itemTotal, stripe, deleteOrder, orderSuccess} = props;
+
+  const {cart, shippingId, taxId, valueTotal,
+    handleBack, handleReset, totalShipping, itemTotal,
+    stripe, deleteOrder, orderSuccess, username
+  } = props;
 
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [username, setUsername] = useState(USERNAME);
 
   const handleChange = ({error}) => {
     if (error) {
@@ -49,26 +51,33 @@ const _CardForm = (props) => {
     }
   };
 
-  const chargeCustomer = async (id, valueTotal) => (
+  //stripe payment
+  const chargeCustomer = async (id, valueTotal, orderSuccess) =>
+    orderSuccess ? (
     await axios.post(`${PAYMENT}/stripe/charge`, {
         amount: parseInt(valueTotal) * 100,
         token: id
       }
-    )).data.status;
+    )).data.status : null;
 
-  const createOrderItem = async (cart, shippingId, taxId) => ( await props.createOrder(
-    cart,
-    shippingId,
-    taxId
+  // create an order
+  const createOrderItem = async (cart, shippingId, taxId) =>
+    ( await props.createOrder(
+      cart,
+      shippingId,
+      taxId
   ));
 
+  //delete created order if payment fails
   const deleteOrderItem = async (orders) => {
     await props.deleteOrder(orders);
     setErrorMessage(errMsg);
   };
 
+  //return created order Ids
   const getOrderIds = (createOrder) => (map(createOrder, ids => (ids.order_id)));
 
+  //if transaction is successful route to confirmation page
   const confirmationPage = (cart, valueTotal, totalShipping, itemTotal) => {
     localStorage.setItem('orderItems', JSON.stringify({
       cart, valueTotal,
@@ -76,6 +85,17 @@ const _CardForm = (props) => {
     }));
     window.location.replace('/confirmation')
   };
+
+  //send email confirmation or delete created order based or payment response
+  const sendEmailConfirmation = async (chargeSuccess, createOrder) =>
+    chargeSuccess === 'succeeded' ?
+    (await emailConfirmation(props)) :
+    await deleteOrderItem(getOrderIds(createOrder));
+
+  // trigger confirmation page method
+  const completeTransaction = () =>
+    sendEmailConfirmation ? confirmationPage(cart, valueTotal, totalShipping, itemTotal) :
+      setErrorMessage('There was an error processing order');
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -91,27 +111,20 @@ const _CardForm = (props) => {
       try {
         setLoading(true);
         const {token: { id }} = createToken;
+        console.log(id);
 
-        // Create an Order
         await createOrderItem(cart, shippingId, taxId);
-        console.log(id, 'Id token');
-
-        // Charge Customer with stripe payment
-        const chargeSuccess = orderSuccess ? await chargeCustomer(id, valueTotal) :
-          setErrorMessage(errMsg);
-
-        // Send Email notification if payment is successful
-        const sendEmailConfirmation = chargeSuccess === 'succeeded' ?
-          (await emailConfirmation(props)) :
-          await deleteOrderItem(getOrderIds(createOrder));
-
-        sendEmailConfirmation ? confirmationPage(cart, valueTotal, totalShipping, itemTotal) :
-          setErrorMessage('There was an error processing order');
+        await sendEmailConfirmation(
+          await chargeCustomer(id, valueTotal, orderSuccess),
+          createOrder
+        );
+        await completeTransaction();
 
       } catch (err) {
         errorReport(JSON.stringify(err));
         console.log(err);
         setErrorMessage(errMsg);
+        setLoading(false)
       }
 
     } else {
@@ -145,7 +158,7 @@ const _CardForm = (props) => {
                   </label>
                   <Button
                     style={{ marginLeft: '0.5em' }}
-                    color="pink"
+                    color="teal"
                     fluid
                     size="large"
                     type="submit"
@@ -207,6 +220,7 @@ const StripePayment = (props) => {
     <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PK}>
       <Elements>
         <CardForm
+          username={localStorage.getItem('username')}
           totalShipping={totalShipping}
           shipping_cost={shipping_cost}
           valueTotal={valueTotal}

@@ -32,7 +32,7 @@ module.exports.orderConfirmation = async (event, context) => {
   } = order;
 
   try {
-    const Source = '"Turing T-Shirt Shop" < clementudensi@gmail.com >';
+    const Source = `"Turing T-Shirt Shop" < ${process.env.EMAIL} >`;
     const subject = `Product Order Summary`;
     const emailParams = await SendEmail.email(
       Source,
@@ -63,13 +63,41 @@ module.exports.errorReport = async (event, context) => {
   } = order;
 
   try {
-    const Source = '"Turing T-Shirt Shop" < clementudensi@gmail.com >';
+    const Source = `"Turing T-Shirt Shop" < ${process.env.EMAIL} >`;
     const subject = `Error Report`;
     const emailParams = await SendEmail.email(
       Source,
       process.env.ERROR_MAIL,
       myEmail,
       error,
+      subject,
+    );
+    return SendEmail.generateResponse(201, emailParams);
+  } catch (err) {
+    return  SendEmail.generateError(500, err);
+  }
+};
+
+
+module.exports.contactAdmin = async (event, context) => {
+  context.callbackWaitsForEmptyEventLoop = false;
+  const order = JSON.parse(event.body);
+
+  const {
+    firstName,
+    lastName,
+    email,
+    message
+  } = order;
+
+  try {
+    const Source = `${firstName} ${lastName} < ${process.env.ERROR_MAIL} >`;
+    const subject = `Inquiry from Turing`;
+    const emailParams = await SendEmail.email(
+      Source,
+      process.env.EMAIL,
+      email,
+      message,
       subject,
     );
     return SendEmail.generateResponse(201, emailParams);

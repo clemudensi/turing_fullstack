@@ -1,19 +1,8 @@
 import React from 'react';
 import {Link, Route, Switch } from 'react-router-dom';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import {IMAGE} from '../../constants';
-
-const propTypes = {
-  id: PropType.number,
-  category: PropType.string,
-  department: PropType.string,
-  type: PropType.string,
-  name: PropType.string,
-  price: PropType.number,
-  image: PropType.string,
-  discounted_price: PropType.number
-};
 
 const ProductItem = (props) => {
   const {
@@ -65,6 +54,15 @@ const ProductItem = (props) => {
   );
 };
 
-ProductItem.propTypes = propTypes;
+ProductItem.propTypes = {
+  id: PropTypes.number,
+  category: PropTypes.array,
+  department: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  price: PropTypes.number,
+  image: PropTypes.string,
+  discounted_price: PropTypes.number
+};
 
 export default ProductItem;

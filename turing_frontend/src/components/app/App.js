@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import decode from 'jwt-decode';
+import { toast } from 'react-toastify';
 import ScrollToTop from './ScrollToTop';
 import '../../App.css';
 import HottestProducts from '../Home/HottestProducts';
@@ -20,6 +21,10 @@ import NotFound from '../staticPages/404-page';
 import withAuth from '../HOC/WithAuth';
 
 const compose = (f, g) => x => f(g(x));
+toast.configure({
+  autoClose: 8000,
+  draggable: true,
+});
 
 const validateToken = () => {
   let token = sessionStorage.getItem('accessToken');
@@ -34,7 +39,7 @@ const validateToken = () => {
 };
 
 const App = (props) => {
-  const { cart, handleRemoveFromCart, tokenValid, logOut } = props;
+  const { cart, handleRemoveFromCart, tokenValid, logOut, history } = props;
   return (
     <Fragment>
       <React.Suspense fallback={<MyLoader />}>
@@ -45,6 +50,7 @@ const App = (props) => {
             validateToken={validateToken()}
             tokenValid={tokenValid}
             logOut={logOut}
+            history={history}
           />
           <div className={'App'}>
             <Switch>

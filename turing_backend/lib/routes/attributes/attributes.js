@@ -1,4 +1,4 @@
-/** T-shirt shop product API
+ /** T-shirt shop product API
  * @params {string} attributes                  - Product attribute
  * @params {number} attribute_id                - Attribute ID
  * @params {number} product_id                  - Product ID

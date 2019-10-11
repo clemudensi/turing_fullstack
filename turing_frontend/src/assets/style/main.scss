@@ -17,7 +17,7 @@
       @include transition();
     }
     &.selected a,&:hover a{
-      color: deeppink;
+      color: #4bc0c0;
       text-decoration:none;
     }
   }
@@ -55,9 +55,9 @@
         line-height: 38px;
         text-align: center;
         @include transition();
-        color: deeppink;
+        color: #4bc0c0;
         &.selected a,&:hover a{
-          color: deeppink;
+          color: #4bc0c0;
         }
       }
       &.selected a {

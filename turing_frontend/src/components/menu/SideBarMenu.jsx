@@ -65,7 +65,7 @@ const SideBarMenu = (props) => {
 
 SideBarMenu.propTypes = {
   handleItemClick: PropTypes.func,
-  activeItem: PropTypes.number,
+  activeItem: PropTypes.string,
   handleProList: PropTypes.func,
 };
 

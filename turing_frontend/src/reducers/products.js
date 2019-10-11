@@ -15,18 +15,23 @@ export default (
   state = {
     loading: false, error: false, data: [], products: [], total: '',
   },
-  action,
-) => {
+  action) => {
   switch (action.type) {
     case PRODUCTS_CHECK:
       return { ...state, loading: true };
     case FETCH_PRODUCTS_SUCCESS:
       return {
-        ...state,
         loading: false,
         data: action.data,
         products: action.data.products || [],
         total: action.data.total,
+      };
+    case ADD_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        data: action.data,
+        msg: 'Your have successfully added a product',
+        error: null
       };
     case PRODUCTS_EMPTY:
       return {
@@ -40,13 +45,6 @@ export default (
         ...state,
         loading: false,
         error: action.error,
-      };
-    case ADD_PRODUCT_SUCCESS:
-      return {
-        ...state,
-        data: action.data,
-        msg: 'Your have successfully added a product',
-        error: null
       };
     case ADD_PRODUCT_ERROR:
       return {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Card, Grid } from 'semantic-ui-react';
+import {Card, Grid, Segment} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import ProductInfo from '../../containers/ProductInfo';
 import 'assets/style/product.scss';
@@ -21,7 +21,7 @@ const ProductDetailSite = (props) => {
   return (
     <Card fluid>
       <Card.Content>
-        <Grid as="section" textAlign="center">
+        <Grid as="section" textAlign="center" stackable>
           <Route>
             {({ location }) => (
               <ProductInfo

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Grid } from 'semantic-ui-react';
+import {Card, Grid, Segment} from 'semantic-ui-react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import ProductImages from '../components/product/ProductImages';
@@ -76,11 +76,10 @@ const ProductInfo = (props) => {
 
   useEffect(() => {
     fetchProduct(getProductId());
-    const runEffect = async () => {
+    (async () => {
       const { data: { cart_id } } = await axios.get(`${PRODUCTS}/shoppingcart/generateUniqueId`);
       setCartId(cart_id);
-    };
-    runEffect();
+    })();
     if (data === {} ){
       setNotFound(true)
     }
@@ -90,10 +89,10 @@ const ProductInfo = (props) => {
   return (
     data && cartId ?
       <Grid.Row>
-        <Grid.Column width={6}>
+        <Grid.Column width={4}>
           <ProductImages img={proInfo.image} />
         </Grid.Column>
-        <Grid.Column id="product-info" width={6} textAlign="left">
+        <Grid.Column id="product-info" width={8} textAlign="left" className="sidebar">
           <ProductHeader
             name={dataProInfo.name}
             price={dataProInfo.price}

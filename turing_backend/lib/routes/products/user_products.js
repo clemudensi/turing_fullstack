@@ -28,8 +28,8 @@ const Router = require('../../../config/router');
 // const passport = require('passport');
 const verifyToken = require('../../helpers/verify_token').verify_token;
 const secureRoute = require('../../helpers/verify_token').secureRoute;
-const midWare = require('../../helpers/redis_cache');
-const cache = require('../../helpers/app_cache').memcachedMiddleware(20);
+// const redisCache = require('../../helpers/redis_cache');
+// const cache = require('../../helpers/app_cache').memcachedMiddleware(20);
 const {
   category_procedure,
   attribute_value_procedure,
@@ -50,7 +50,6 @@ Router
         const { product_id } = await Product.create(
           product,
         );
-
         /* assign product category and attribute value to product */
         await productAssociation(
           sequelize,
@@ -102,7 +101,8 @@ Router
             },
             { model: AttributeValue, attributes: {
                 exclude: ['product_attribute'],
-              },}
+              },
+            }
           ]
         },
       );

@@ -3,7 +3,6 @@ import { Header, Dropdown, Card } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ProductList from '../components/main/ProductList';
-import Pagination from '../components/main/Pagination';
 import 'assets/style/main.scss';
 import 'assets/style/product.scss';
 import { fetchProducts } from '../actions/products';
@@ -16,44 +15,61 @@ const options = [
 ];
 
 const ProductContainer = (props) => {
-  const { products: { products, total } } = props;
-  let { showcaseHeader, location, page } = props;
+
+  const {
+    products: { products, total },
+    showcaseHeader, location, fetchProducts,
+    history
+  } = props;
+
+  const params = new URLSearchParams(window.location.search);
+  const selectedPage = params.get('page');
+  let page;
   const [filter, setFilter] = useState('Best Match');
+  const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
+  const [activePage, setActivePage] = useState(selectedPage);
+
+  const category = location.pathname.split('/')[2];
+
+  useEffect(() => {
+    /* Fetch Category products*/
+    setLoading(false);
+    fetchProducts(selectedPage, category);
+    if ( products === []) {
+      setNotFound(true);
+    }
+
+    setLoading(false);
+  }, [category, selectedPage]);
+
 
   const handleSelectSort = (e, { value }) => (
     setFilter(value)
   );
 
+  const handlePagination = ({activePage}) => {
+    setActivePage(activePage);
+    setLoading(true);
+    history.push(`?page=${activePage}`);
+  };
+
   const filterHighestPrice = (arr) => {
     return arr.length <= 1 ? arr : filterHighestPrice(arr
       .slice(1)
-      .filter(item => item.price >= arr[0].price))
+      .filter(item => item.discounted_price >= arr[0].discounted_price))
       .concat(arr[0], filterHighestPrice(arr
-        .slice(1).filter(item => item.price < arr[0].price)));
+        .slice(1).filter(item => item.discounted_price < arr[0].discounted_price)));
   };
 
   const filterLowestPrice = (arr) => {
     // Quick Sort
     return arr.length <= 1 ? arr : filterLowestPrice(arr
       .slice(1)
-      .filter(item => item.price <= arr[0].price))
+      .filter(item => item.discounted_price <= arr[0].discounted_price))
       .concat(arr[0], filterLowestPrice(arr
-        .slice(1).filter(item => item.price > arr[0].price)));
+        .slice(1).filter(item => item.discounted_price > arr[0].discounted_price)));
   };
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const page = params.get('page');
-    const category = props.location.pathname.split('/')[2];
-
-    /* Fetch Category products*/
-    props.fetchProducts(page, category);
-    if ( products === []) {
-      setNotFound(true)
-    }
-  }, [showcaseHeader, page]);
-
 
   // Total Quantity of Products
   const itemsTotal = total;
@@ -89,16 +105,16 @@ const ProductContainer = (props) => {
 
   dataDisplay = dataDisplay.slice((currentPage - 1) * 20, currentPage * 20);
 
-  const loading = () => {
+  const loadingComp = () => {
     return notFound === false ? <PageLoader/> : <h2>Product not found</h2>;
   };
 
   return (
-    <div className="category-top">
+    <React.Fragment>
       <Card fluid>
         <Card.Content>
           <div id="product-showcase">
-            <Header as="h2" textAlign="left" content={showcaseHeader} />
+            <Header as="h2" textAlign="left" content={category.toUpperCase()} />
             <div className="pro-filter-bar">
               <p className="total-num">
                 <strong>Total</strong>
@@ -117,19 +133,20 @@ const ProductContainer = (props) => {
               />
             </div>
             {
-              dataDisplay.length > 0 ?
-                <ProductList dataProducts={dataDisplay} data={dataDisplay} /> :
-                loading()
+              dataDisplay.length > 0 && loading === false ?
+                <ProductList dataProducts={dataDisplay} data={dataDisplay}
+                  page={page}
+                  activePage={activePage}
+                  currentPage={currentPage}
+                  loading={loading}
+                  handlePagination={handlePagination}
+                /> :
+                loadingComp()
             }
-            <Pagination
-              page={page}
-              currentPage={currentPage}
-              handlePagination={props.handlePagination}
-            />
           </div>
         </Card.Content>
       </Card>
-    </div>
+    </React.Fragment>
   );
 };
 
@@ -145,9 +162,13 @@ ProductContainer.defaultProps = {
 ProductContainer.propTypes = {
   dataProducts: PropTypes.array,
   showcaseHeader: PropTypes.string,
+  products: PropTypes.array,
+  total: PropTypes.number,
+  location: PropTypes.object,
+  fetchProducts: PropTypes.func,
+  history: PropTypes.objectOf(PropTypes.func)
 };
 
 export default connect(
   ({ products }) => ({ products }),
-  { fetchProducts },
-)(ProductContainer);
+  { fetchProducts })(ProductContainer);

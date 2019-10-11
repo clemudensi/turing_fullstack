@@ -6,7 +6,6 @@ module.exports = async (
   category_procedure,
   attribute_value_procedure
 ) => {
-
   /*update product to category*/
   for(let i =0; i < categories.length; i++){
     await sequelize.query(category_procedure,

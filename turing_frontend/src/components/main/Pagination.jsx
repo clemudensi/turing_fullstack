@@ -1,58 +1,49 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, Pagination } from 'semantic-ui-react';
-import PropType from 'prop-types';
-import Scroll from '../scroll/Scroll';
+import PropTypes from 'prop-types';
 
-const propTypes = {
-  page: PropType.number,
-  currentPage: PropType.number,
-};
+const PaginationList = (props) => {
+  const {
+    page,
+    currentPage,
+    activePage,
+    handlePagination
+  } = props;
 
-class PaginationList extends Component {
-  constructor(props) {
-    super(props);
-    this.handleItemClick = this.handleItemClick.bind(this);
-  }
+  const itemsPagination = [];
 
-  handleItemClick() {
-    Scroll(290, 300);
- }
-
-  render() {
-    const {
-      page,
-      currentPage,
-    } = this.props;
-    // console.log(currentPage, page, 'Cure')
-    const itemsPagination = [];
-
-    for (let i = 0; i < page; i++) {
-      const link = (<NavLink to={`?page=${i + 1}`}>{i + 1}</NavLink>);
-      itemsPagination.push(
-        <Menu.Item
-          as="a"
-          key={i}
-          // className={ `page-item ${i + 1 === currentPage ? 'selected' : ''}`}
-          className={'sb-menu-item' + ' ' + `${currentPage === i + 1 ? 'selected' : ''}`}
-          onClick={()=>this.props.handlePagination(i +1)}
-        >
-          {link}
-        </Menu.Item>,
-      );
-    }
-
-    return (
-      <Menu as="ul" className="page-bar sb-menu" pagination>
-        <Pagination
-          totalPages={page}
-          onPageChange={(e, data)=>this.props.handlePagination(data)}
-        />
-      </Menu>
+  for (let i = 0; i < page; i++) {
+    const link = (<NavLink to={`?page=${i + 1}`}>{i + 1}</NavLink>);
+    itemsPagination.push(
+      <Menu.Item
+        as="a"
+        key={i}
+        className={`sb-menu-item ${currentPage === i + 1 ? 'selected' : ''}`}
+        onClick={()=>handlePagination(i +1)}
+      >
+        {link}
+      </Menu.Item>
     );
   }
-}
 
-Pagination.propTypes = propTypes;
+  return (
+    <Menu as="ul" className="page-bar sb-menu" pagination>
+      <Pagination
+        activePage={activePage}
+        totalPages={page}
+        onPageChange={(e, data)=>handlePagination(data)}
+      />
+    </Menu>
+  );
+};
+
+
+PaginationList.propTypes = {
+  page: PropTypes.number,
+  currentPage: PropTypes.number,
+  activePage: PropTypes.number,
+  handlePagination: PropTypes.func,
+};
 
 export default PaginationList;

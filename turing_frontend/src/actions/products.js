@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PRODUCTS } from '../constants';
+import { PRODUCTS, AXIOSCONFIG } from '../constants';
 
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 export const PRODUCTS_CHECK = 'PRODUCTS_CHECK';
@@ -14,7 +14,7 @@ export const ADD_PRODUCT_ERROR = 'ADD_PRODUCT_ERROR';
 
 
 export const fetchProducts = (page, category) => async (dispatch) => {
-  let URL = null;
+  let URL = '';
   const { pathname } = window.location;
   pathname === '/'
     ? URL = `${PRODUCTS}/products/hottest`
@@ -78,8 +78,10 @@ export const addProduct = (
       attributes,
       price,
       discounted_price
-    });
-    dispatch({
+    },
+      AXIOSCONFIG
+    );
+    await dispatch({
       type: ADD_PRODUCT_SUCCESS,
       data
     });

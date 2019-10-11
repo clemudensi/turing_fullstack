@@ -40,7 +40,7 @@
       h2 {
         @include carousel-text;
         font-size: 96px;
-        color: #e03997;
+        color: #4bc0c0;
         &::selection{
           color: $main-color;
         }

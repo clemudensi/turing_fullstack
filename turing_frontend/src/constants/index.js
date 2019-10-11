@@ -1,6 +1,6 @@
-export const PRODUCTS = 'https://bjrossgq82.execute-api.us-east-1.amazonaws.com/dev/api/v1';
-export const PAYMENT = 'https://3akws9d3ub.execute-api.us-east-1.amazonaws.com/dev/api/v1';
-export const IMAGE = 'https://turingstore.s3.amazonaws.com/images';
+export const PRODUCTS = 'https://3njuvyethk.execute-api.us-east-1.amazonaws.com/dev/api/v1';
+export const PAYMENT = 'https://1yvw6ujyij.execute-api.us-east-1.amazonaws.com/dev/api/v1';
+export const IMAGE = 'https://turingshirts.s3.amazonaws.com/product_images';
 export const AXIOSCONFIG = {
   headers: {'Authorization': sessionStorage.getItem('accessToken')}
 };
@@ -25,7 +25,7 @@ export const Attributes = [
   { key: '10', text: 'Yellow', value: 10 },
   { key: '11', text: 'Green', value: 11 },
   { key: '12', text: 'Blue', value: 12 },
-  { key: '13', text: 'Indigo', value: 13 },
+  { key: '13', text: 'Pink', value: 13 },
   { key: '14', text: 'Purple', value: 14 },
 ];
 

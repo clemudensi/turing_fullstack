@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   Grid, Header, List, Form, Segment,
@@ -10,14 +10,14 @@ import { contactAdmin } from '../../actions/contact_admin';
 import {connect} from 'react-redux';
 
 const ContactUs = (props) => {
-  const {contactAdmin} = props;
+  const { contactAdmin, contact_admin } = props;
   const [inputs, setInputs] = useState(
     {
       email: "",
       firstName: "",
       lastName: "",
       organization: "",
-      text: "",
+      message: "",
       loading: false
     });
 
@@ -30,7 +30,7 @@ const ContactUs = (props) => {
     setInputs({ ...inputs, [name]: value });
   };
 
-  const { email, firstName, lastName, text } = inputs;
+  const { email, firstName, lastName, message } = inputs;
 
   const notify = () => {
     toast.success(`You have successfully sent a message`, {
@@ -44,132 +44,136 @@ const ContactUs = (props) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await contactAdmin(email, text);
+      await contactAdmin(email, message);
     } catch (e) {
       setLoading(false);
       setError('Sorry error occurred, Please try again')
-
     }
   };
+
+  useEffect(() => {
+    if(contact_admin.MessageId){
+      notify()
+    }
+  }, [contact_admin]);
 
   return (
     <React.Fragment>
       <Container>
-        <Grid.Row columns={2}>
-          <Grid.Column mobile={16} tablet={8} computer={8} largeScreen={8}>
-            <Segment basic>
-              {/*<Header as="h1" style={{ fontSize: "3em", paddingTop: "2em" }}>*/}
-              {/*  Contact us*/}
-              {/*</Header>*/}
-              <Header as="h3">
-                Tell us how we can help and we’ll get in touch shortly.
-              </Header>
-            </Segment>
-            <Card fluid>
-              <CardContent>
-                <Segment basic>
-                  <Form
-                    size="big"
-                    onSubmit={handleSubmit}
-                  >
-                    {success && (
-                      <Message compact color="green">
-                        {success}
-                      </Message>
-                    )}
-
-                    {error && (
-                      <Message compact color="red">
-                        {error}
-                      </Message>
-                    )}
-
-                    <Form.Group widths="equal">
-                      <Form.Field required>
-                        <label>First name</label>
-                        <Input
-                          name="firstName"
-                          value={firstName}
-                          onChange={handleChange}
-                        />
-                      </Form.Field>
-
-                      <Form.Field required>
-                        <label>Last name</label>
-                        <Input
-                          name="lastName"
-                          value={lastName}
-                          onChange={handleChange}
-                        />
-                      </Form.Field>
-                    </Form.Group>
-                    <Form.Field required>
-                      <label>Email</label>
-                      <Input
-                        name="email"
-                        value={email}
-                        id="email"
-                        onChange={handleChange}
-                      />
-                    </Form.Field>
-
-                    <Form.Field required>
-                      <label>Message</label>
-                      <TextArea
-                        name="text"
-                        value={text}
-                        onChange={handleChange}
-                      />
-                    </Form.Field>
-
-                    <Form.Button
-                      color="pink"
-                      disabled={!text || !email || !lastName || !firstName}
-                      style={{ padding: "1.25em 4.5em" }}
-                      type="submit"
-                      fluid
-                      size="large"
-                      loading={loading}
+        <div className="pad-top">
+          <Grid.Row columns={2}>
+            <Grid.Column mobile={16} tablet={8} computer={8} largeScreen={8}>
+              <Segment basic>
+                <Header as="h3">
+                  Tell us how we can help and we’ll get in touch shortly.
+                </Header>
+              </Segment>
+              <Card fluid>
+                <CardContent>
+                  <Segment basic>
+                    <Form
+                      size="big"
+                      onSubmit={handleSubmit}
                     >
-                      Submit
-                    </Form.Button>
-                  </Form>
-                </Segment>
-              </CardContent>
-            </Card>
-          </Grid.Column>
+                      {success && (
+                        <Message compact color="green">
+                          {success}
+                        </Message>
+                      )}
 
-          <Grid.Column
-            mobile={16}
-            tablet={8}
-            computer={8}
-            largeScreen={8}
-            verticalAlign="top"
-          >
-            <Segment basic padded style={{ marginTop: "6em" }}>
-              <List size="medium">
-                <List.Item content="Nigeria" />
-                <List.Item content="19 Adeyemi-Lawson Avenue" />
-                <List.Item content="Lagos, Nigeria 00234" />
-                <List.Item content="+234 806 558 3760" />
-              </List>
-              <Divider hidden />
-              <Divider hidden />
-              <List relaxed size="medium">
-                <List.Item>
-                  <List.Header color="">EMAIL</List.Header>
-                  <List.Content>
-                    <a href="mailto:enquiry@jetstreamafrica.com">
-                      clementudensi@gmail.com
-                    </a>
-                  </List.Content>
-                </List.Item>
-              </List>
+                      {error && (
+                        <Message compact color="red">
+                          {error}
+                        </Message>
+                      )}
 
-              <Divider hidden />
-            </Segment>
-          </Grid.Column>
-        </Grid.Row>
+                      <Form.Group widths="equal">
+                        <Form.Field required>
+                          <label>First name</label>
+                          <Input
+                            name="firstName"
+                            value={firstName}
+                            onChange={handleChange}
+                          />
+                        </Form.Field>
+
+                        <Form.Field required>
+                          <label>Last name</label>
+                          <Input
+                            name="lastName"
+                            value={lastName}
+                            onChange={handleChange}
+                          />
+                        </Form.Field>
+                      </Form.Group>
+                      <Form.Field required>
+                        <label>Email</label>
+                        <Input
+                          name="email"
+                          value={email}
+                          id="email"
+                          onChange={handleChange}
+                        />
+                      </Form.Field>
+
+                      <Form.Field required>
+                        <label>Message</label>
+                        <TextArea
+                          name="message"
+                          value={message}
+                          onChange={handleChange}
+                        />
+                      </Form.Field>
+
+                      <Form.Button
+                        color="teal"
+                        disabled={!message || !email || !lastName || !firstName}
+                        style={{ padding: "1.25em 4.5em" }}
+                        type="submit"
+                        fluid
+                        size="large"
+                        loading={loading}
+                      >
+                        Submit
+                      </Form.Button>
+                    </Form>
+                  </Segment>
+                </CardContent>
+              </Card>
+            </Grid.Column>
+
+            <Grid.Column
+              mobile={16}
+              tablet={8}
+              computer={8}
+              largeScreen={8}
+              verticalAlign="top"
+            >
+              <Segment basic padded style={{ marginTop: "6em" }}>
+                <List size="medium">
+                  <List.Item content="Nigeria" />
+                  <List.Item content="19 Adeyemi-Lawson Avenue" />
+                  <List.Item content="Lagos, Nigeria 00234" />
+                  <List.Item content="+234 806 558 3760" />
+                </List>
+                <Divider hidden />
+                <Divider hidden />
+                <List relaxed size="medium">
+                  <List.Item>
+                    <List.Header color="">EMAIL</List.Header>
+                    <List.Content>
+                      <a href="mailto:enquiry@jetstreamafrica.com">
+                        clementudensi@gmail.com
+                      </a>
+                    </List.Content>
+                  </List.Item>
+                </List>
+
+                <Divider hidden />
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </div>
       </Container>
     </React.Fragment>
   );

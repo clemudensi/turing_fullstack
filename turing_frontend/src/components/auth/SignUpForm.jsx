@@ -91,7 +91,7 @@ const SignUpForm = ({
           />
 
           <Button
-            color="pink"
+            color="teal"
             fluid
             size="large"
             type="submit"

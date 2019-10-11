@@ -31,12 +31,12 @@ provider:
     securityGroupIds:
       - ${self:custom.config.securityGroupID}
     subnetIds:
-      - subnet-864c7de1
-      - subnet-91c3ffbf
-      - subnet-31c4f66d
-      - subnet-f429e8b9
-      - subnet-ded792e0
-      - subnet-7c39d272
+      - subnet-4590d17b
+      - subnet-5a0b3506
+      - subnet-e4e611ea
+      - subnet-bd88bada
+      - subnet-e7033bc9
+      - subnet-0ae52847
   iamRoleStatements:
     - Effect: "Allow"
       Action:

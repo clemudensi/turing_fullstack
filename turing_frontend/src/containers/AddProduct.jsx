@@ -1,15 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import UploadImage from '../cloudinary/UploadImage';
-import ProductForm from "./ProductForm";
-import ProductAttr from "./ProductAttr";
-import {addProduct} from '../../actions/products';
-import { IMAGE_NAME, IMAGE_URL} from '../../constants';
+import UploadImage from '../components/cloudinary/UploadImage';
+import ProductForm from "../components/product/ProductForm";
+import ProductAttr from "../components/product/ProductAttr";
+import {addProduct} from '../actions/products';
+import { uploadImage } from "../actions/upload_image";
+
+import {IMAGE_NAME, IMAGE_URL, PAYMENT} from '../constants';
+import {bindActionCreators} from "redux";
 
 const validate = (
-  thumbnail,
+  productImage,
   fileName,
   productName,
   categories,
@@ -30,17 +33,17 @@ const validate = (
 };
 
 const AddProduct = (props) => {
-  const { addProduct, products } = props;
+  const { addProduct, uploadImage, products, upload_image } = props;
   const [inputs, setInputs] = useState(
     {
-      thumbnail: IMAGE_URL,
+      productImage: '',
+      fileName: '',
       productName: '',
       categories: [],
       description: '',
       attributes: [],
       price: '',
       discount: '',
-      fileName: IMAGE_NAME,
       loading: false,
       attemptedInput : {
         productName: true,
@@ -60,9 +63,16 @@ const AddProduct = (props) => {
     discount: true,
   });
 
-  const [thumbnail, setThumbnail] = useState(IMAGE_URL);
-  const [fileName, setFileName] = useState(IMAGE_NAME);
+  const [productImage, ] = useState(IMAGE_URL);
+  const [fileName, ] = useState(IMAGE_NAME);
   const [loading, setLoading] = useState(false);
+  const [uploadFile, setUploadFile] = useState({ name: ''});
+  const [loadingImage, setLoadingImage] = useState(false);
+  const [loadingStatus, setLoadingStatus] = useState(false);
+
+  const { name } = uploadFile;
+  const formData = new FormData();
+  formData.append('files', uploadFile);
 
   const handleChange = (event, {name, value}) => {
     event.persist();
@@ -76,15 +86,14 @@ const AddProduct = (props) => {
     setAttemptedInput({ attemptedInput: { [field] : false } });
   };
 
-  const uploadWidget = () => {
-    window.cloudinary.openUploadWidget({ cloud_name: 'fundit-app', upload_preset: 'fua6wfmh', tags:['fundit']},
-      async (error, result) => {
-        setThumbnail(result[0].url);
-        setFileName(result[0].original_filename);
-        await localStorage.setItem('image_url', result[0].url);
-        await localStorage.setItem('image_name',result[0].original_filename);
-      });
+  const selectImage = async (event) => {
+    if (event.target.files[0]){
+      setUploadFile(event.target.files[0]);
+    } else {
+      return null
+    }
   };
+
   const handleSubmit = async e => {
     e.preventDefault();
     
@@ -102,11 +111,10 @@ const AddProduct = (props) => {
     await localStorage.removeItem('image_url');
     await localStorage.removeItem('image_name');
 
-    return products ? window.location.replace('/') : setLoading(false)
   };
 
   const errors = validate(
-    thumbnail,
+    productImage,
     fileName,
     productName,
     categories,
@@ -116,7 +124,26 @@ const AddProduct = (props) => {
     discount
   );
 
-  const imageUrl = thumbnail ? thumbnail : "https://react.semantic-ui.com/images/wireframe/image.png";
+  const imageUrl = productImage ? productImage : "https://react.semantic-ui.com/images/wireframe/image.png";
+
+  const imageLoader = () => {
+    setLoadingImage(false);
+    setLoadingStatus(true);
+  };
+
+  const sendImage = () => {
+    if ( name !== ''){
+      setLoadingImage(true);
+      uploadImage(formData)
+    }
+  };
+
+  useEffect(() => {
+    if (upload_image.data.status === 'Success') return imageLoader();
+
+    products.data.success ? window.location.replace('/') : setLoading(false);
+
+  }, [products, upload_image]);
 
   return (
     <div>
@@ -127,7 +154,11 @@ const AddProduct = (props) => {
             <br />
             <h6>{fileName}</h6>
             <UploadImage
-              uploadWidget={uploadWidget}
+              selectImage={selectImage}
+              fileName={name}
+              loadingImage={loadingImage}
+              loadingStatus={loadingStatus}
+              sendImage={sendImage}
             />
           </div>
         </Grid.Column>
@@ -160,14 +191,25 @@ const AddProduct = (props) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    products: state.products,
+    upload_image: state.upload_image
+  };
+};
+
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({ addProduct, uploadImage }, dispatch)
+);
+
 AddProduct.propTypes = {
-  thumbnail_url: PropTypes.string,
+  productImage_url: PropTypes.string,
   original_filename: PropTypes.string,
   cloudinary: PropTypes.object,
   openUploadWidget: PropTypes.func
 };
 
 export default connect(
-  ({ products }) => ({ products }),
-  {addProduct}
+  mapStateToProps,
+  mapDispatchToProps
 )(AddProduct);

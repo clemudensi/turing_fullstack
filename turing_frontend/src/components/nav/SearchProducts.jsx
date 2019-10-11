@@ -56,6 +56,7 @@ const SearchProduct = (props) => {
     <div className="center-div">
       <Search
         fluid
+        input={{ fluid: true }}
         className='search-bar'
         icon="search"
         loading={isLoading}

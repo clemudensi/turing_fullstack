@@ -12,14 +12,17 @@ export const emailConfirmation = (props) => {
     }
   } = props;
 
-  return axios.post(`${PAYMENT}/contact/email`, {
+  return axios.post(`${PAYMENT}/email/order`, {
     email: USERNAME,
     orderItem: cart,
     address,
     city,
     state: 'state',
     country
-  });
+  }, AXIOSCONFIG
+  );
 };
 
-export const errorReport = (error) => (axios.post(`${PAYMENT}/error/email`, {error}, AXIOSCONFIG));
+export const errorReport = (error) => (axios.post(`${PAYMENT}/email/error`, {error}, AXIOSCONFIG));
+
+

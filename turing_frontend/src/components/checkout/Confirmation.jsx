@@ -15,8 +15,7 @@ const Confirmation = () => {
             <span>
               <Icon
                 name="check"
-                color="pink"
-                textAlign="left"
+                color="teal"
                 bordered
                 circular
                 size="big"
@@ -85,13 +84,13 @@ const Confirmation = () => {
   }
   else {
     return (
-      <div className="full-page">
-        <Card>
+      <Container>
+        <Card fluid  className="card-payment">
           <Card.Content>
             <h2>No order found</h2>
           </Card.Content>
         </Card>
-      </div>
+      </Container>
     );
   }
 };

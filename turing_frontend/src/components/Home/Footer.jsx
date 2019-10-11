@@ -15,7 +15,7 @@ const Footer = () => (
               <List link inverted>
                 <List.Item as="ul">Sitemap</List.Item>
                 <List.Item as="ul"><NavLink to="/contact">Contact</NavLink></List.Item>
-                <List.Item as="ul"><NavLink to="/about">About</NavLink></List.Item>
+                <List.Item as="ul"><NavLink to="/about">Others</NavLink></List.Item>
                 <List.Item as="ul">FAQ</List.Item>
               </List>
             </Grid.Column>

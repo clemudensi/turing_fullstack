@@ -72,7 +72,7 @@ const HomeProducts = (props) => {
   return (
     <Card fluid>
       <Grid id="hot-products" textAlign="center">
-        <Grid.Column width={12} id="hot-products-items">
+        <Grid.Column width={14} id="hot-products-items">
           <ShowcaseHeader
             headerMain="HOTTEST PRODUCTS"
             headerSub="Best Collection for You"
@@ -101,7 +101,7 @@ HomeProducts.defaultProps = {
 };
 
 HomeProducts.propTypes = {
-  fetchProducts: PropTypes.object,
+  fetchProducts: PropTypes.func,
   data: PropTypes.array
 };
 

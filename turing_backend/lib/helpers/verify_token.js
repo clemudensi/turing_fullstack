@@ -11,7 +11,7 @@ const verify_token  = (req, res, next) => {
   }
 };
 
-const secure = (req, res, action) => (
+const secure = (req, res, next) => (
   jwt.verify(req.token, process.env.privateKey, (err, data) => {
     if (err) {
       res.status(401)
@@ -19,12 +19,12 @@ const secure = (req, res, action) => (
           msg: 'You are unauthorized to perform this operation'
         })
     } else {
-      return action();
+      return next();
     }
   })
 );
 
-const secureRoute = (req, res) => (action) => secure(req, res, action);
+const secureRoute = (req, res) => (callback) => secure(req, res, callback);
 
 module.exports = {
   verify_token,
